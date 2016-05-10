@@ -3,6 +3,7 @@
 <dom-module id="things-input-field">
   <style>
     .paper-font-caption {
+      margin-top: 0pt;
       margin-bottom: 0pt;
     }
   </style>
@@ -10,18 +11,37 @@
   <template>
     <p class="paper-font-caption">[[label]]</p>
 
-    <input is="iron-input" 
-      name="[[name]]" 
-      allowed-pattern=["[[allowedPattern]]"]
-      prevent-invalid-input="[[preventInvalidInput]]"
+    <input is="iron-input" id="input"
+      name="[[name]]"
+      type="[[type]]"
       value="[[value]]"
       bind-value="{{bindValue}}"
-      placeholder="[[placeholder]]">
+      placeholder="[[placeholder]]"
+      min="[[min]]"
+      max="[[max]]"
+      minlength$="[[minlength]]"
+      maxlength$="[[maxlength]]"
+      pattern$="[[pattern]]"
+      allowed-pattern="[[allowedPattern]]"
+      validator="[[validator]]"
+      required$="[[required]]"
+      readonly="[[readonly]]"
+      disabled="[[disabled]]"
+      error-massage="[[errorMessage]]"
+      auto-validate="[[autoValidate]]">
+
+    <template is="dom-if" if="[[!isValid]]">
+      <p class="paper-font-caption">[[errorMessage]]</p>
+    </template>
   </template>
 
   <script>
     Polymer({
       is: "things-input-field",
+
+      behavior: [
+        Polymer.IronFormElementBehavior
+      ],
 
       properties: {
         
@@ -32,28 +52,37 @@
           type: String
         },
 
+        /**
+         * input field name
+         */
         name: {
           type: String
         },
 
         /**
-         * input field에 입력 가능한 문자열을 정의 할 수 있다.
-         * allowedPattern의 value가 없고 preventInvalidInput이 true이면 모든 입력을 받지 않는다.
+         * allowd pattern
+         * validation check의 기준이 되는 패턴의 정의 합니다.
+         * ex [a-zA-Z]* a~z & A~Z 
+         * 마지막 *을 포함하지 않을 시 validation에서 첫글자만 확인하는점 주의
+         * pattern의 기준과 다른 문자열 입력 가능
+         */
+        pattern: {
+          type: String
+        },
+
+        /**
+         * input field에 입력 가능한 패턴을 정의 합니다.
+         * pattern과 달리 입력이 안되도록 합니다.
          * ex: [a-zA-Z0-9] a ~ z, A ~ Z, 0 ~ 9
+         * allowedPattern의 기준과 다른 문자열 입력 불가능
          */
         allowedPattern: {
           type: String
         },
 
         /**
-         * allowedPattern 적용 여부
-         * true/false = allowedPattern 활성화/allowedPattern 비활성화
+         * input field value
          */
-        preventInvalidInput: {
-          type: Boolean,
-          value: false
-        },
-
         value: {
           type: String
         },
@@ -62,11 +91,114 @@
          * Value for Using two-way binding
          */
         bindValue: {
+          type: String,
+          observer: '_valueChange'
+        },
+
+        /**
+         * input field placeholder
+         */
+        placeholder: {
           type: String
         },
 
-        placeholder: {
+        /**
+         * input field type
+         */
+        type: {
           type: String
+        },
+
+        /**
+         * 자동 validation check 활성화 여부
+         */
+        autoValidate: {
+          type: Boolean,
+          value: false
+        },
+
+        /**
+         * type이 number일때 활성화 되며 최소값을 정의 합니다.
+         */
+        min: {
+          type: Number
+        },
+
+        /**
+         * type이 number일때 활성화 되며 최대값을 정의 합니다.
+         */
+        max: {
+          type: Number
+        },
+
+        /**
+         * type이 string일때 활성화 되며 입력 최소 길이를 정의 합니다.
+         */
+        minlength: {
+          type: Number
+        },
+
+        /**
+         * type이 string일때 활성화 되며 입력 최대 길이를 정의 합니다.
+         */
+        maxlength: {
+          type: Number
+        },
+
+        /**
+         * validate 함수를 통해 return 되는 값으로 초기화 하는 변수
+         */
+        isValid: {
+          type: Boolean,
+          value: true
+        },
+
+        /**
+         * input field에 반드시 값이 포함되어야 함을 결정 합니다.
+         */
+        required: {
+          type: Boolean,
+          value: false
+        },
+
+        /**
+         * input field readonly attribute
+         */
+        readonly: {
+          type: Boolean,
+          value: false
+        },
+
+        /**
+         * input field disabled attribute
+         */
+        disabled: {
+          type: Boolean,
+          value: false
+        },
+
+        /**
+         * validation check를 통해 isValid의 값이 false일때 화면에 나타나는 errorMessage
+         */
+        errorMessage: {
+          type: String,
+          value: 'Invalid input'
+        }
+      },
+
+      /**
+       * 수동 validation check function
+       */
+      validate: function() {
+        this.isValid = this.$.input.validate();
+      },
+
+      /**
+       * autoValidate가 true일 때 bindValue의 변화를 감지해 validate 함수를 호출 합니다.
+       */
+      _valueChange: function() {
+        if(this.autoValidate) {
+          this.isValid = this.$.input.validate();
         }
       }
     });
