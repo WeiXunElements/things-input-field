@@ -2,14 +2,16 @@
 
 <dom-module id="things-input-field">
   <style>
-    .paper-font-caption {
-      margin-top: 0pt;
-      margin-bottom: 0pt;
+    label{
+      @apply(--things-label);
+    }
+    input{
+      @apply(--things-input);
     }
   </style>
 
   <template>
-    <p class="paper-font-caption">[[label]]</p>
+    <label>[[label]]</label>
 
     <input is="iron-input" id="input"
       name="[[name]]"
@@ -31,7 +33,7 @@
       auto-validate="[[autoValidate]]">
 
     <template is="dom-if" if="[[!isValid]]">
-      <p class="paper-font-caption">[[errorMessage]]</p>
+      <label>[[errorMessage]]</label>
     </template>
   </template>
 
