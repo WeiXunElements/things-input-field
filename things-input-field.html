@@ -30,6 +30,7 @@
       allowed-pattern="[[allowedPattern]]"
       validator="[[validator]]"
       required$="[[required]]"
+      hidden="[[hidden]]"
       readonly$="[[readonly]]"
       disabled="[[disabled]]"
       error-massage="[[errorMessage]]"
@@ -162,6 +163,14 @@
          * input field에 반드시 값이 포함되어야 함을 결정 합니다.
          */
         required: {
+          type: Boolean,
+          value: false
+        },
+        
+        /**
+         * input field hidden attribute
+         */
+        hidden: {
           type: Boolean,
           value: false
         },
