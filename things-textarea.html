@@ -6,6 +6,28 @@
 	<style>
 	  label{
       @apply(--things-label);
+      width:12.5%;
+      vertical-align:top;
+    }
+    iron-autogrow-textarea{
+    	border:none;
+    	width:82.5%;
+    	padding:5px;
+    }
+    iron-autogrow-textarea::shadow textarea{
+      @apply(--things-textarea);
+      width:97.5%;height:92%;
+      padding:1%;
+
+    }
+    iron-autogrow-textarea::shadow textarea:focus{
+      outline:none;
+    }
+    .hint:before{
+      @apply(--things-hint-arrow);
+    }
+    .hint{
+      @apply(--things-hint);
     }
 	</style>
 
@@ -26,7 +48,7 @@
     </iron-autogrow-textarea>
 
     <template is="dom-if" if="[[!isValid]]">
-      <label>[[errorMessage]]</label>
+      <span class="hint">[[errorMessage]]</span>
     </template>
 	</template>
 

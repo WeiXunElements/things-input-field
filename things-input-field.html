@@ -11,6 +11,12 @@
     input:focus{
       outline:none;
     }
+    .hint:before{
+      @apply(--things-hint-arrow);
+    }
+    .hint{
+      @apply(--things-hint);
+    }
   </style>
 
   <template>
@@ -37,7 +43,7 @@
       auto-validate="[[autoValidate]]">
 
     <template is="dom-if" if="[[!isValid]]">
-      <label>[[errorMessage]]</label>
+      <span class="hint">[[errorMessage]]</span>
     </template>
   </template>
 
