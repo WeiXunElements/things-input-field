@@ -1,4 +1,5 @@
 <link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../things-validators/things-validator-all.html">
 
 <dom-module id="things-input-field">
   <style>
@@ -20,6 +21,8 @@
   </style>
 
   <template>
+    <things-validator-all></things-validator-all>
+
     <label>[[label]]</label>
 
     <input is="iron-input" id="input"
@@ -110,6 +113,10 @@
          * input field type
          */
         type: {
+          type: String
+        },
+
+        validationType: {
           type: String
         },
 
@@ -210,7 +217,10 @@
        */
       _valueChanged: function(bindValue) {
         if(this.autoValidate) {
+          var event = new CustomEvent('things-input-validation-start', { 'detail': this.validationType });
+          document.dispatchEvent(event); 
           this.isValid = this.$.input.validate();
+
         }
       }
     });
