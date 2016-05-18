@@ -25,8 +25,7 @@
     <input is="iron-input" id="input"
       name="[[name]]"
       type="[[type]]"
-      value="[[value]]"
-      bind-value="{{bindValue}}"
+      bind-value="{{value}}"
       placeholder="[[placeholder]]"
       min="[[min]]"
       max="[[max]]"
@@ -96,15 +95,8 @@
          * input field value
          */
         value: {
-          type: String
-        },
-
-        /**
-         * Value for Using two-way binding
-         */
-        bindValue: {
           type: String,
-          observer: '_valueChange'
+          observer: '_valueChanged'
         },
 
         /**
@@ -212,11 +204,12 @@
       validate: function() {
         this.isValid = this.$.input.validate();
       },
-
+      
       /**
        * autoValidate가 true일 때 bindValue의 변화를 감지해 validate 함수를 호출 합니다.
        */
-      _valueChange: function() {
+      _valueChanged: function(bindValue) {
+        console.log('Bind Value : ' + bindValue);
         if(this.autoValidate) {
           this.isValid = this.$.input.validate();
         }
