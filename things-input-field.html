@@ -209,7 +209,6 @@
        * autoValidate가 true일 때 bindValue의 변화를 감지해 validate 함수를 호출 합니다.
        */
       _valueChanged: function(bindValue) {
-        console.log('Bind Value : ' + bindValue);
         if(this.autoValidate) {
           this.isValid = this.$.input.validate();
         }
