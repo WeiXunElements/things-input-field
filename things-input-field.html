@@ -217,10 +217,7 @@
        */
       _valueChanged: function(bindValue) {
         if(this.autoValidate) {
-          var event = new CustomEvent('things-input-validation-start', { 'detail': this.validationType });
-          document.dispatchEvent(event); 
           this.isValid = this.$.input.validate();
-
         }
       }
     });
