@@ -1,180 +1,173 @@
 <link rel="import" href="../polymer/polymer.html">
-
 <link rel="import" href="../iron-autogrow-textarea/iron-autogrow-textarea.html">
-
 <dom-module is='things-textarea'>
-	<style>
-	  label{
-      @apply(--things-label);
-      width:12.5%;
-      vertical-align:top;
+    <style>
+    :host {
+        @apply(--layout-horizontal);
     }
-    iron-autogrow-textarea{
-    	border:none;
-    	width:82.5%;
-    	padding:5px;
+    
+    label {
+        @apply(--things-label);
+        width: 12.5%;
+        vertical-align: top;
     }
-    iron-autogrow-textarea::shadow textarea{
-      @apply(--things-textarea);
-      width:97.5%;height:92%;
-      padding:1%;
-
+    
+    iron-autogrow-textarea {
+        border: none;
+        @apply(--layout-flex);
+        padding: 5px;
     }
-    iron-autogrow-textarea::shadow textarea:focus{
-      outline:none;
+    
+    iron-autogrow-textarea::shadow textarea {
+        @apply(--things-textarea);
+        width: 97.5%;
+        height: 92%;
+        padding: 1%;
     }
-    .hint:before{
-      @apply(--things-hint-arrow);
+    
+    iron-autogrow-textarea::shadow textarea:focus {
+        outline: none;
     }
-    .hint{
-      @apply(--things-hint);
+    
+    .hint:before {
+        @apply(--things-hint-arrow);
     }
-	</style>
-
-	<template>
-    <label>[[label]]</label>
-
-    <iron-autogrow-textarea id="textarea"
-      name="[[name]]"
-      bind-value="{{value}}"
-      placeholder="[[placeholder]]"
-      maxlength="[[maxlength]]"
-      max-rows="[[maxRows]]"
-      readonly="[[readonly]]"
-      hidden="[[hidden]]"
-      disabled="[[disabled]]"
-      required="[[required]]"
-      auto-validate="[[autoValidate]]">
-    </iron-autogrow-textarea>
-
-    <template is="dom-if" if="[[!isValid]]">
-      <span class="hint">[[errorMessage]]</span>
+    
+    .hint {
+        @apply(--things-hint);
+    }
+    </style>
+    <template>
+        <label>[[label]]</label>
+        <iron-autogrow-textarea id="textarea" name="[[name]]" bind-value="{{value}}" placeholder="[[placeholder]]" maxlength="[[maxlength]]" max-rows="[[maxRows]]" readonly="[[readonly]]" hidden="[[hidden]]" disabled="[[disabled]]" required="[[required]]" auto-validate="[[autoValidate]]">
+        </iron-autogrow-textarea>
+        <template is="dom-if" if="[[!isValid]]">
+            <span class="hint">[[errorMessage]]</span>
+        </template>
     </template>
-	</template>
+    <script>
+    Polymer({
+        is: 'things-textarea',
 
-	<script>
-		Polymer({
-			is: 'things-textarea',
+        properties: {
 
-			properties: {
-				
-				/**
-				 * name of textarea
-				 */
-				name: {
-					type: String
-				},
+            /**
+             * name of textarea
+             */
+            name: {
+                type: String
+            },
 
-				/**
-				 * textarea value attribute
-				 */
-				value: {
-					type: String,
-					observer: '_valueChanged'
-				},
+            /**
+             * textarea value attribute
+             */
+            value: {
+                type: String,
+                observer: '_valueChanged'
+            },
 
-				/**
-				 * textarea placeholder attribute
-				 */
-				placeholder: {
-					type: String
-				},
+            /**
+             * textarea placeholder attribute
+             */
+            placeholder: {
+                type: String
+            },
 
-				/**
-				 * initial rows
-				 */
-				rows: {
-					type: Number
-				},
+            /**
+             * initial rows
+             */
+            rows: {
+                type: Number
+            },
 
-				/**
-				 * max rows 
-				 * 최대 row수를 설정하고 최대 로우가 넘어서는 input을 입력 받으면 스크롤이 생성 된다.
-				 */
-				maxRows: {
-					type: Number,
-					value: 10
-				},
+            /**
+             * max rows 
+             * 최대 row수를 설정하고 최대 로우가 넘어서는 input을 입력 받으면 스크롤이 생성 된다.
+             */
+            maxRows: {
+                type: Number,
+                value: 10
+            },
 
-				/**
-				 * textare maxlength attribute
-				 */
-				maxlength: {
-					type: Number,
-					value: 10
-				},
+            /**
+             * textare maxlength attribute
+             */
+            maxlength: {
+                type: Number,
+                value: 10
+            },
 
-				/**
-				 * readonly attribute
-				 */
-				readonly: {
-					type: Boolean,
-					value: false
-				},
+            /**
+             * readonly attribute
+             */
+            readonly: {
+                type: Boolean,
+                value: false
+            },
 
-				/**
-				 * hidden attribute
-				 */
-				hidden: {
-					type: Boolean,
-					value: false
-				},
+            /**
+             * hidden attribute
+             */
+            hidden: {
+                type: Boolean,
+                value: false
+            },
 
-				/**
-				 * disabled attribute
-				 */
-				disabled: {
-					type: Boolean,
-					value: false
-				},
+            /**
+             * disabled attribute
+             */
+            disabled: {
+                type: Boolean,
+                value: false
+            },
 
-				/**
-				 * required attribute
-				 */
-				required: {
-					type: Boolean,
-					value: false
-				},
+            /**
+             * required attribute
+             */
+            required: {
+                type: Boolean,
+                value: false
+            },
 
-				/**
-				 * validation 결과 
-				 */
-				isValid: {
-					type: Boolean
-				},
+            /**
+             * validation 결과 
+             */
+            isValid: {
+                type: Boolean
+            },
 
-				/**
-				 * isValid가 false 일때 나타나는 errorMessage attribute
-				 */
-				errorMessage: {
-					type: String,
-					value: 'Invalid input'
-				},
+            /**
+             * isValid가 false 일때 나타나는 errorMessage attribute
+             */
+            errorMessage: {
+                type: String,
+                value: 'Invalid input'
+            },
 
-				/**
-				 * auto validation check 활성화 여부
-				 */
-				autoValidate: {
-					type: Boolean,
-					value: false
-				}
-			},
+            /**
+             * auto validation check 활성화 여부
+             */
+            autoValidate: {
+                type: Boolean,
+                value: false
+            }
+        },
 
-			/**
-			 * 수동 validation check 함수
-			 */
-			validate: function() {
-				this.isValid = this.$.input.validate();
-			},
+        /**
+         * 수동 validation check 함수
+         */
+        validate: function() {
+            this.isValid = this.$.input.validate();
+        },
 
-      /**
-       * autoValidate가 true일 때 bindValue의 변화를 감지해 validate 함수를 호출 합니다.
-       */
-			_valueChanged: function() {
-				if(this.autoValidate) {
-					this.isValid = this.$.input.validate();
-				}
-			}
-		})
-	</script>
+        /**
+         * autoValidate가 true일 때 bindValue의 변화를 감지해 validate 함수를 호출 합니다.
+         */
+        _valueChanged: function() {
+            if (this.autoValidate) {
+                this.isValid = this.$.input.validate();
+            }
+        }
+    })
+    </script>
 </dom-module>
