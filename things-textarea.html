@@ -5,42 +5,42 @@
     :host {
         @apply(--layout-horizontal);
     }
-    
+
     label {
         @apply(--things-label);
         width: 12.5%;
         vertical-align: top;
     }
-    
+
     iron-autogrow-textarea{
         @apply(--layout-flex);
         margin-bottom:10px;
         margin-left:3px;
         border:none;
     }
-    
+
     iron-autogrow-textarea::shadow textarea {
         @apply(--things-textarea);
         width: 94.5%;
         height: 82%;
         padding: 1%;
     }
-    
+
     iron-autogrow-textarea::shadow textarea:focus {
         outline: none;
     }
-    
+
     .hint:before {
         @apply(--things-hint-arrow);
     }
-    
+
     .hint {
         @apply(--things-hint);
     }
     </style>
     <template>
         <label>[[label]]</label>
-        <iron-autogrow-textarea id="textarea" name="[[name]]" bind-value="{{value}}" placeholder="[[placeholder]]" maxlength="[[maxlength]]" max-rows="[[maxRows]]" readonly="[[readonly]]" hidden="[[hidden]]" disabled="[[disabled]]" required="[[required]]" auto-validate="[[autoValidate]]">
+        <iron-autogrow-textarea id="textarea" rows="[[rows]]" name="[[name]]" bind-value="{{value}}" placeholder="[[placeholder]]" maxlength="[[maxlength]]" max-rows="[[maxRows]]" readonly="[[readonly]]" hidden="[[hidden]]" disabled="[[disabled]]" required="[[required]]" auto-validate="[[autoValidate]]">
         </iron-autogrow-textarea>
         <template is="dom-if" if="[[!isValid]]">
             <span class="hint">[[errorMessage]]</span>
@@ -82,7 +82,7 @@
             },
 
             /**
-             * max rows 
+             * max rows
              * 최대 row수를 설정하고 최대 로우가 넘어서는 input을 입력 받으면 스크롤이 생성 된다.
              */
             maxRows: {
@@ -130,7 +130,7 @@
             },
 
             /**
-             * validation 결과 
+             * validation 결과
              */
             isValid: {
                 type: Boolean
