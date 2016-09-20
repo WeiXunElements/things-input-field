@@ -217,6 +217,13 @@
         if(this.autoValidate) {
           this.isValid = this.$.input.validate();
         }
+      },
+
+      /**
+       * focus function
+       */
+      focus: function() {
+        this.$['input'].focus();
       }
     });
   </script>
