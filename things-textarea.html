@@ -41,7 +41,7 @@
     </style>
     <template>
         <label>[[label]]</label>
-        <iron-autogrow-textarea id="textarea" rows="[[rows]]" name="[[name]]" bind-value="{{value}}" placeholder="[[placeholder]]" maxlength="[[maxlength]]" max-rows="[[maxRows]]" readonly="[[readonly]]" hidden="[[hidden]]" disabled="[[disabled]]" required="[[required]]" auto-validate="[[autoValidate]]">
+        <iron-autogrow-textarea id="textarea" rows="[[rows]]" name="[[name]]" bind-value="{{value}}" placeholder="[[placeholder]]" maxlength="[[maxlength]]" max-rows="[[maxRows]]" readonly="[[readonly]]" hidden="[[hidden]]" disabled="[[disabled]]" required="[[required]]" auto-validate="[[autoValidate]]" tabindex$="[[tabIndex]]">
         </iron-autogrow-textarea>
         <template is="dom-if" if="[[!isValid]]">
             <span class="hint">[[errorMessage]]</span>
@@ -152,6 +152,12 @@
             autoValidate: {
                 type: Boolean,
                 value: false
+            },
+            /**
+             * tab index
+             */
+            tabIndex:{
+                type: String
             }
         },
 
@@ -161,7 +167,12 @@
         validate: function() {
             this.isValid = this.$.input.validate();
         },
-
+        /**
+        * focus function
+        */
+        focus: function() {
+            this.$['textarea'].focus();
+        },
         /**
          * autoValidate가 true일 때 bindValue의 변화를 감지해 validate 함수를 호출 합니다.
          */
@@ -169,6 +180,12 @@
             if (this.autoValidate) {
                 this.isValid = this.$.input.validate();
             }
+        },
+        /**
+        * set tab index
+        */
+        setTabindex : function(tabIndex){
+            this.$['input'].setAttribute('tabindex',tabIndex);
         }
     })
     </script>
