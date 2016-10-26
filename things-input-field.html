@@ -39,7 +39,8 @@
       readonly$="[[readonly]]"
       disabled="[[disabled]]"
       error-message="[[errorMessage]]"
-      auto-validate="[[autoValidate]]">
+      auto-validate="[[autoValidate]]"
+      tabindex$="[[tabIndex]]">
 
     <template is="dom-if" if="[[!isValid]]">
       <span class="hint">[[errorMessage]]</span>
@@ -200,6 +201,13 @@
         errorMessage: {
           type: String,
           value: 'Invalid input'
+        },
+        /**
+         * tab Index for input field
+         * @type {Number}
+         */
+        tabIndex :{
+          type: String
         }
       },
 
@@ -224,6 +232,12 @@
        */
       focus: function() {
         this.$['input'].focus();
+      }
+      /**
+       * set tab index
+       */
+      setTabindex : function(tabIndex){
+        this.$['input'].setAttribute('tabindex',tabIndex);
       }
     });
   </script>
