@@ -4,28 +4,25 @@
     <style>
     :host {
         @apply(--layout-horizontal);
+        @apply(--layout-relative);
+        --iron-autogrow-textarea: {
+            @apply(--things-textarea);
+        }
     }
 
     label {
         @apply(--things-label);
-        width: 12.5%;
-        vertical-align: top;
+        width : var(--things-textarea-label-width);
     }
 
     iron-autogrow-textarea{
-        @apply(--layout-flex);
-        margin-bottom:10px;
+        width : var(--things-textarea-width);
+        margin-bottom:40px;
         margin-left:3px;
         border:none;
         overflow:inherit;
     }
 
-    iron-autogrow-textarea::shadow textarea {
-        @apply(--things-textarea);
-        width: 94.5%;
-        height: 82%;
-        padding: 1%;
-    }
 
     iron-autogrow-textarea::shadow textarea:focus {
         outline: none;
@@ -40,7 +37,7 @@
     }
     </style>
     <template>
-        <label>[[label]]</label>
+        <label id="textLabel">[[label]]</label>
         <iron-autogrow-textarea id="textarea" rows="[[rows]]" name="[[name]]" bind-value="{{value}}" placeholder="[[placeholder]]" maxlength="[[maxlength]]" max-rows="[[maxRows]]" readonly="[[readonly]]" hidden="[[hidden]]" disabled="[[disabled]]" required="[[required]]" auto-validate="[[autoValidate]]" tabindex$="[[tabIndex]]">
         </iron-autogrow-textarea>
         <template is="dom-if" if="[[!isValid]]">
@@ -67,6 +64,11 @@
                 type: String,
                 notify: true,
                 observer: '_valueChanged'
+            },
+
+            divspan:{
+                type: Number,
+                value : 1
             },
 
             /**
