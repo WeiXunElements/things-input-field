@@ -1,195 +1,220 @@
 <link rel="import" href="../polymer/polymer.html">
+
 <link rel="import" href="../iron-autogrow-textarea/iron-autogrow-textarea.html">
+
+<!--
+    TextArea
+-->
+
 <dom-module is='things-textarea'>
     <style>
-    :host {
-        @apply(--layout-horizontal);
-        @apply(--layout-relative);
-        --iron-autogrow-textarea: {
-            @apply(--things-textarea);
-            width : var(--things-textarea-width);
+        :host {
+            @apply(--layout-horizontal);
+            @apply(--layout-relative);
+            --iron-autogrow-textarea: {
+                @apply(--things-textarea);
+                width : var(--things-textarea-width);
+            }
         }
-    }
-
-    label {
-        @apply(--things-label);
-        width : var(--things-textarea-label-width);
-    }
-
-    iron-autogrow-textarea{
-        margin-bottom:40px;
-        margin-left:3px;
-        border:none;
-        overflow:inherit;
-        width : var(--things-autogrow-textarea-width);
-    }
-
-
-    iron-autogrow-textarea::shadow textarea:focus {
-        outline: none;
-    }
-
-    .hint:before {
-        @apply(--things-hint-arrow);
-    }
-
-    .hint {
-        @apply(--things-hint);
-    }
+        label {
+            @apply(--things-label);
+            width : var(--things-textarea-label-width);
+        }
+        iron-autogrow-textarea {
+            margin-bottom:40px;
+            margin-left:3px;
+            border:none;
+            overflow:inherit;
+            width : var(--things-autogrow-textarea-width);
+        }
+        iron-autogrow-textarea::shadow textarea:focus {
+            outline: none;
+        }
+        .hint:before {
+            @apply(--things-hint-arrow);
+        }
+        .hint {
+            @apply(--things-hint);
+        }
     </style>
+
     <template>
         <label id="textLabel">[[label]]</label>
-        <iron-autogrow-textarea id="textarea" rows="[[rows]]" name="[[name]]" bind-value="{{value}}" placeholder="[[placeholder]]" maxlength="[[maxlength]]" max-rows="[[maxRows]]" readonly="[[readonly]]" hidden="[[hidden]]" disabled="[[disabled]]" required="[[required]]" auto-validate="[[autoValidate]]" tabindex$="[[tabIndex]]">
+
+        <iron-autogrow-textarea 
+            id="textarea" 
+            rows="[[rows]]" 
+            name="[[name]]" 
+            bind-value="{{value}}" 
+            placeholder="[[placeholder]]" 
+            maxlength="[[maxlength]]" 
+            max-rows="[[maxRows]]" 
+            readonly="[[readonly]]" 
+            hidden="[[hidden]]" 
+            disabled="[[disabled]]" 
+            required="[[required]]" 
+            auto-validate="[[autoValidate]]" 
+            tabindex$="[[tabIndex]]">
         </iron-autogrow-textarea>
+
         <template is="dom-if" if="[[!isValid]]">
             <span class="hint">[[errorMessage]]</span>
         </template>
     </template>
+
     <script>
-    Polymer({
-        is: 'things-textarea',
+        Polymer({
+            is: 'things-textarea',
 
-        properties: {
+            properties: {
+                /**
+                 * name of textarea
+                 */
+                name: {
+                    type: String
+                },
 
-            /**
-             * name of textarea
-             */
-            name: {
-                type: String
+                /**
+                 * textarea value attribute
+                 */
+                value: {
+                    type: String,
+                    notify: true,
+                    observer: '_valueChanged'
+                },
+
+                /**
+                 * ?
+                 */
+                divspan: {
+                    type: Number,
+                    value : 1
+                },
+
+                /**
+                 * textarea placeholder attribute
+                 */
+                placeholder: {
+                    type: String
+                },
+
+                /**
+                 * initial rows
+                 */
+                rows: {
+                    type: Number
+                },
+
+                /**
+                 * max rows
+                 * 최대 row수를 설정하고 최대 로우가 넘어서는 input을 입력 받으면 스크롤이 생성 된다.
+                 */
+                maxRows: {
+                    type: Number,
+                    value: 10
+                },
+
+                /**
+                 * textare maxlength attribute
+                 */
+                maxlength: {
+                    type: Number
+                },
+
+                /**
+                 * readonly attribute
+                 */
+                readonly: {
+                    type: Boolean,
+                    value: false
+                },
+
+                /**
+                 * hidden attribute
+                 */
+                hidden: {
+                    type: Boolean,
+                    value: false
+                },
+
+                /**
+                 * disabled attribute
+                 */
+                disabled: {
+                    type: Boolean,
+                    value: false
+                },
+
+                /**
+                 * required attribute
+                 */
+                required: {
+                    type: Boolean,
+                    value: false
+                },
+
+                /**
+                 * validation 결과
+                 */
+                isValid: {
+                    type: Boolean
+                },
+
+                /**
+                 * isValid가 false 일때 나타나는 errorMessage attribute
+                 */
+                errorMessage: {
+                    type: String,
+                    value: function() {
+                        return Things.DataGlobal.t('text.invalid_input');
+                    }
+                },
+
+                /**
+                 * auto validation check 활성화 여부
+                 */
+                autoValidate: {
+                    type: Boolean,
+                    value: false
+                },
+
+                /**
+                 * tab index
+                 */
+                tabIndex:{
+                    type: String
+                }
             },
 
             /**
-             * textarea value attribute
+             * 수동 validation check 함수
              */
-            value: {
-                type: String,
-                notify: true,
-                observer: '_valueChanged'
+            validate: function() {
+                this.isValid = this.$['textarea'].validate();
             },
-
-            divspan:{
-                type: Number,
-                value : 1
-            },
-
+            
             /**
-             * textarea placeholder attribute
+             * focus function
              */
-            placeholder: {
-                type: String
+            focus: function() {
+                this.$['textarea'].focus();
             },
 
             /**
-             * initial rows
+             * autoValidate가 true일 때 bindValue의 변화를 감지해 validate 함수를 호출 합니다.
              */
-            rows: {
-                type: Number
+            _valueChanged: function() {
+                if (this.autoValidate) {
+                    this.isValid = this.$['textarea'].validate();
+                }
             },
 
             /**
-             * max rows
-             * 최대 row수를 설정하고 최대 로우가 넘어서는 input을 입력 받으면 스크롤이 생성 된다.
+             * set tab index
              */
-            maxRows: {
-                type: Number,
-                value: 10
-            },
-
-            /**
-             * textare maxlength attribute
-             */
-            maxlength: {
-                type: Number
-            },
-
-            /**
-             * readonly attribute
-             */
-            readonly: {
-                type: Boolean,
-                value: false
-            },
-
-            /**
-             * hidden attribute
-             */
-            hidden: {
-                type: Boolean,
-                value: false
-            },
-
-            /**
-             * disabled attribute
-             */
-            disabled: {
-                type: Boolean,
-                value: false
-            },
-
-            /**
-             * required attribute
-             */
-            required: {
-                type: Boolean,
-                value: false
-            },
-
-            /**
-             * validation 결과
-             */
-            isValid: {
-                type: Boolean
-            },
-
-            /**
-             * isValid가 false 일때 나타나는 errorMessage attribute
-             */
-            errorMessage: {
-                type: String,
-                value: 'Invalid input'
-            },
-
-            /**
-             * auto validation check 활성화 여부
-             */
-            autoValidate: {
-                type: Boolean,
-                value: false
-            },
-            /**
-             * tab index
-             */
-            tabIndex:{
-                type: String
+            setTabindex : function(tabIndex){
+                this.$['input'].setAttribute('tabindex',tabIndex);
             }
-        },
-
-        /**
-         * 수동 validation check 함수
-         */
-        validate: function() {
-            this.isValid = this.$.input.validate();
-        },
-        /**
-        * focus function
-        */
-        focus: function() {
-            this.$['textarea'].focus();
-        },
-        /**
-         * autoValidate가 true일 때 bindValue의 변화를 감지해 validate 함수를 호출 합니다.
-         */
-        _valueChanged: function() {
-            if (this.autoValidate) {
-                this.isValid = this.$.input.validate();
-            }
-        },
-        /**
-        * set tab index
-        */
-        setTabindex : function(tabIndex){
-            this.$['input'].setAttribute('tabindex',tabIndex);
-        }
-    })
+        });
     </script>
 </dom-module>
