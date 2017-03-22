@@ -93,6 +93,7 @@
       properties: {
         /**
          * 라벨 string
+         *******
          * @type {String}
          */
         label: {
@@ -101,6 +102,7 @@
 
         /**
          * input field name
+         *******
          * @type {String}
          */
         name: {
@@ -113,6 +115,7 @@
          * ex [a-zA-Z]* a~z & A~Z
          * 마지막 *을 포함하지 않을 시 validation에서 첫글자만 확인하는점 주의
          * pattern의 기준과 다른 문자열 입력 가능
+         *******
          * @type {String}
          */
         pattern: {
@@ -124,6 +127,7 @@
          * pattern과 달리 입력이 안되도록 합니다.
          * ex: [a-zA-Z0-9] a ~ z, A ~ Z, 0 ~ 9
          * allowedPattern의 기준과 다른 문자열 입력 불가능
+         *******
          * @type {String}
          */
         allowedPattern: {
@@ -132,6 +136,7 @@
 
         /**
          * input field value 설정
+         *******
          * @type {String}
          */
         value: {
@@ -142,6 +147,7 @@
 
         /**
          * input field placeholder 설정
+         *******
          * @type {String}
          */
         placeholder: {
@@ -150,6 +156,7 @@
 
         /**
          * input field type 설정
+         *******
          * @type {String}
          */
         type: {
@@ -158,6 +165,7 @@
 
         /**
          * 자동 validation check 활성화 여부
+         *******
          * @type {Boolean}
          */
         autoValidate: {
@@ -167,6 +175,7 @@
 
         /**
          * type이 number일때 활성화 되며 최소값을 정의 합니다.
+         *******
          * @type {Number}
          */
         min: {
@@ -175,6 +184,7 @@
 
         /**
          * type이 number일때 활성화 되며 최대값을 정의 합니다.
+         *******
          * @type {Number}
          */
         max: {
@@ -183,6 +193,7 @@
 
         /**
          * type이 string일때 활성화 되며 입력 최소 길이를 정의 합니다.
+         *******
          * @type {Number}
          */
         minlength: {
@@ -191,6 +202,7 @@
 
         /**
          * type이 string일때 활성화 되며 입력 최대 길이를 정의 합니다.
+         *******
          * @type {Number}
          */
         maxlength: {
@@ -199,6 +211,7 @@
 
         /**
          * validate 함수를 통해 return 되는 값으로 초기화 하는 변수
+         *******
          * @type {Boolean}
          */
         isValid: {
@@ -208,6 +221,7 @@
 
         /**
          * input field에 반드시 값이 포함되어야 함을 결정 합니다.
+         *******
          * @type {Boolean}
          */
         required: {
@@ -217,6 +231,7 @@
 
         /**
          * input field hidden 속성
+         *******
          * @type {Boolean}
          */
         hidden: {
@@ -226,6 +241,7 @@
 
         /**
          * input field readonly 속성
+         *******
          * @type {Boolean}
          */
         readonly: {
@@ -235,6 +251,7 @@
 
         /**
          * input field disabled 속성
+         *******
          * @type {Boolean}
          */
         disabled: {
@@ -244,6 +261,7 @@
 
         /**
          * validation check를 통해 isValid의 값이 false일때 화면에 나타나는 errorMessage
+         *******
          * @type {String}
          */
         errorMessage: {
@@ -252,6 +270,7 @@
 
         /**
          * input field의 tab Index 설정
+         *******
          * @type {Number}
          */
         tabIndex :{
@@ -268,6 +287,7 @@
 
       /**
        * autoValidate가 true일 때 bindValue의 변화를 감지해 validate 함수를 호출 합니다.
+       ******
        * @param {bindValue} bindValue #### :bindValue변화감지되면 함수실행되여 입력
        */
       _valueChanged: function(bindValue) {
@@ -278,13 +298,14 @@
 
       /**
        * focus function
-       */
+       *****/
       focus: function() {
         this.$['input'].focus();
       },
 
       /**
        * tab index 설정
+       *******
        * @param {tabIndex} tabIndex #### :tabIndex 설정
        */
       setTabindex : function(tabIndex) {

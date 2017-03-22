@@ -2,22 +2,20 @@
 <link rel="import" href="../iron-input/iron-input.html">
 <link rel="import" href="../things-i18n-msg/things-i18n-msg.html">
 <link rel="import" href="../things-global-behavior/things-global-behavior.html">
+<!-- <link rel="import" href="../things-resource-selector/things-resource-selector-behavior.html"> -->
 
 <!--
-view field. resource field의 readonly version
+## view field. resource field의 readonly version
 
   Example:
 
     <things-view-field
       id="resource-selector"
       label="Language"
-      name="user_id"
-      resource-type="User"
-      resource-url="users"
-      delegate-column="name">
+      name="user_id">
     </things-view-field>
 
-
+@demo demo/demo-things-view-field.html
 -->
 
 <dom-module id="things-view-field">
@@ -80,6 +78,7 @@ view field. resource field의 readonly version
          * 예를 들어 특정 resource에 creator_id가 있다면 서버에서 해당 resource를 조회하면 creator 데이터에 { id : '10', name : '홍길동' } 형식으로 넘어온다.
          * Form에서 things-view-field가 creator와 매핑되어 있다면 name 필드는 creator가 되고 submitName은 creator_id가 된다.
          * Form 로딩 후에 사용자가 편집을 다시하여 서버에 보낼 경우 submitName으로 id값만 보내게 된다.
+         ******
          * @type {String}
          */
         name : {
@@ -88,6 +87,7 @@ view field. resource field의 readonly version
 
         /**
          * Form Submit시에 서버로 날려줄 Form Field Name
+         ******
          * @type {String}
          */
         submitName: {
@@ -96,6 +96,7 @@ view field. resource field의 readonly version
 
         /**
          * Input field 상단에 표시할 라벨
+         ******
          * @type {String}
          */
         label: {
@@ -104,6 +105,7 @@ view field. resource field의 readonly version
 
         /**
          * view field object
+         ******
          * @type {String}
          */
         value: {
@@ -113,6 +115,7 @@ view field. resource field의 readonly version
 
         /**
          * view field로 제공된 Object 값의 id
+         ******
          * @type {String}
          */
         idValue: {
@@ -122,6 +125,7 @@ view field. resource field의 readonly version
 
         /**
          * view field로 부 제공된 표시 값
+         ******
          * @type {String}
          */
         displayValue: {
@@ -131,6 +135,7 @@ view field. resource field의 readonly version
         /**
          * view field에 제공된 resource의 id field
          * view field에 제공된 resource의 id값이 이 필드가 가지는 실제 값이 된다.
+         ******
          * @type {String}
          */
         resourceIdField: {
@@ -141,6 +146,7 @@ view field. resource field의 readonly version
         /**
          * view field에 제공된 resource의 title field
          * 화면에 표시할 대표 컬럼명.
+         ******
          * @type {String}
          */
         resourceTitleField: {
@@ -150,6 +156,7 @@ view field. resource field의 readonly version
         /**
          * view field에 제공된 resource의 description field
          * 화면에 표시할 대표 컬럼명.
+         ******
          * @type {String}
          */
         resourceDescField: {
@@ -158,6 +165,7 @@ view field. resource field의 readonly version
         },
         /**
          * 자동 validation check 활성화 여부
+         ******
          * @type {String}
          */
         autoValidate: {
@@ -166,6 +174,7 @@ view field. resource field의 readonly version
         },
         /**
          * validate 함수를 통해 return 되는 값으로 초기화 하는 변수
+         ******
          * @type {String}
          */
         isValid: {
@@ -174,18 +183,16 @@ view field. resource field의 readonly version
         },
         /**
          * validation check를 통해 isValid의 값이 false일때 화면에 나타나는 errorMessage
+         ******
          * @type {String}
          */
         errorMessage: {
           type: String
         }
       },
-
-      behaviors: [
-        Things.ResourceSelectorBehavior
-      ],
       /**
        * id만 변했을 경우
+       *****
        * @param {idValue} idValue #### :id가 변경될때 입력
        */
       _onIdValueChanged: function(idValue){
@@ -193,7 +200,7 @@ view field. resource field의 readonly version
       },
       /**
        * value값이 변경될 경우
-       *
+       *****
        * @param {Object} value #### :value가 변경될때 입력
        */
       _valueChanged: function(value) {
@@ -211,7 +218,7 @@ view field. resource field의 readonly version
 
       /**
        * view field로 부터 id, display 값을 설정한다.
-       *
+       *****
        * @param {String} idValue
        * @param {String} displayValue
        */
@@ -222,16 +229,17 @@ view field. resource field의 readonly version
       },
 
       /**
-       * 설정된 값을 리턴
-       */
+       * 설정된 오브젝트를 리턴
+       * @return {Object}  this.value
+       *****/
       getValue: function() {
         return this.value;
       },
 
       /**
-       * view field로 부터 값을 설정
-       *
-       * @param {Object} value #### :뷰 field값 설정
+       * view에 오브젝트 값을 설정
+       *****
+       * @param {Object} value
        */
       setValue: function(value) {
         this.value = value;
@@ -239,7 +247,7 @@ view field. resource field의 readonly version
 
       /**
        * 값을 리셋
-       */
+       *****/
       clearValue: function() {
         var obj = {};
         obj[this.resourceIdField] = null;
@@ -248,7 +256,7 @@ view field. resource field의 readonly version
       },
       /**
        * 수동 validation check function
-       */
+       *****/
       validate: function() {
         this.isValid = this.$.input.validate();
       }
