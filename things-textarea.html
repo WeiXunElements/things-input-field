@@ -50,6 +50,13 @@ things-textarea는 웹 페이지로 긴 정보를 입력하는 영역이다.
     </style>
 
     <template>
+        <things-i18n-msg
+            auto
+            msgid="text.invalid_input"
+            msg="{{errorMessage}}" hidden>
+            Invalid Input
+        </things-i18n-msg>
+        
         <label id="textLabel">[[label]]</label>
 
         <iron-autogrow-textarea
@@ -188,10 +195,7 @@ things-textarea는 웹 페이지로 긴 정보를 입력하는 영역이다.
                  * @type {String}
                  */
                 errorMessage: {
-                    type: String,
-                    value: function() {
-                        return Things.DataGlobal.t('text.invalid_input');
-                    }
+                    type: String
                 },
 
                 /**

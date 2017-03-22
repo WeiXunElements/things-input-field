@@ -22,10 +22,10 @@
     "iron-input": "^1.0.10",
     "iron-autogrow-textarea": "PolymerElements/iron-autogrow-textarea#^1.0.12",
     "things-validators": "ThingsElements/things-validators",
-    "things-i18n-msg": "ThingsElements/things-i18n-msg#^0.1.25",
-    "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^1.2.5"
+    "things-i18n-msg": "ThingsElements/things-i18n-msg#^0.1.25"
   },
   "devDependencies": {
+    "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^1.2.5",
     "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
     "web-component-tester": "^4.0.0"
   }

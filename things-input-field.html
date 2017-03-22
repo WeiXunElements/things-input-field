@@ -1,19 +1,30 @@
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../things-i18n-msg/things-i18n-msg.html">
 <link rel="import" href="../things-global-behavior/things-global-behavior.html">
-<!--
-## things-input-field
-things-input-field는 웹 페이지로 정보를 입력하는 영역이다.
+<link rel="import" href="../iron-input/iron-input.html">
 
-form은 input data를 json형식으로 서버와 인터페이스한다.
+<!--
+### things-input-field는 웹 페이지로 정보를 입력하는 영역이다.
 
 ### Example:
 
     <form is="iron-form" id="form">
-      <things-input-field name="firstName" label="FirstName:" id="input1" value></things-input-field>
-      <things-input-field name="lastName" label="LastName:" id="input2"></things-input-field>
-      <things-input-field name="eMail" label="E-Mail:" id="input3"></things-input-field>
-      <things-input-field name="description" label="Description:" id="input3"></things-input-field>
+      <things-input-field name="firstName"
+          label="FirstName:"
+          id="input1"
+          value></things-input-field>
+
+      <things-input-field name="lastName"
+          label="LastName:"
+          id="input2"></things-input-field>
+
+      <things-input-field name="eMail"
+          label="E-Mail:"
+          id="input3"></things-input-field>
+
+      <things-input-field name="description"
+          label="Description:"
+          id="input3"></things-input-field>
     </form>
     <button class="button" on-tap="submit">Submit</button>
 
@@ -40,7 +51,13 @@ form은 input data를 json형식으로 서버와 인터페이스한다.
   </style>
 
   <template>
-    <things-i18n-msg></things-i18n-msg>
+    <things-i18n-msg
+        auto
+        msgid="text.invalid_input"
+        msg="{{errorMessage}}" hidden>
+        Invalid Input
+    </things-i18n-msg>
+
     <label hidden="[[hidden]]">[[label]]</label>
 
     <input is="iron-input" id="input"
@@ -72,11 +89,7 @@ form은 input data를 json형식으로 서버와 인터페이스한다.
   <script>
     Polymer({
       is: "things-input-field",
-
-      behavior: [
-        Polymer.IronFormElementBehavior
-      ],
-
+      
       properties: {
         /**
          * 라벨 string
@@ -140,14 +153,6 @@ form은 input data를 json형식으로 서버와 인터페이스한다.
          * @type {String}
          */
         type: {
-          type: String
-        },
-
-        /**
-         * validation type 설정
-         * @type {String}
-         */
-        validationType: {
           type: String
         },
 
@@ -242,10 +247,7 @@ form은 input data를 json형식으로 서버와 인터페이스한다.
          * @type {String}
          */
         errorMessage: {
-          type: String,
-          value: function() {
-            return Things.DataGlobal.t('text.invalid_input');
-          }
+          type: String
         },
 
         /**

@@ -3,7 +3,7 @@
 <link rel="import" href="../things-i18n-msg/things-i18n-msg.html">
 <link rel="import" href="../things-global-behavior/things-global-behavior.html">
 <!--
-Resource field. 서버에 저장되어 있는 리소스 정보를 조회하여 input field에 표시하는 컴포넌트
+view field. resource field의 readonly version
 
   Example:
 
@@ -15,7 +15,6 @@ Resource field. 서버에 저장되어 있는 리소스 정보를 조회하여 i
       resource-url="users"
       delegate-column="name">
     </things-view-field>
-
 -->
 
 <dom-module id="things-view-field">
@@ -41,7 +40,19 @@ Resource field. 서버에 저장되어 있는 리소스 정보를 조회하여 i
   </style>
 
   <template>
-    <input id="id-value-field" is="iron-input" name="[[submitName]]" bind-value="[[idValue]]" hidden>
+    <things-i18n-msg
+        auto
+        msgid="text.invalid_input"
+        msg="{{errorMessage}}" hidden>
+        Invalid Input
+    </things-i18n-msg>
+
+    <input id="id-value-field"
+        is="iron-input"
+        name="[[submitName]]"
+        bind-value="[[idValue]]"
+        hidden>
+    </input>
     <label>[[label]]</label>
     <input is="iron-input"
             id="input"
@@ -52,6 +63,7 @@ Resource field. 서버에 저장되어 있는 리소스 정보를 조회하여 i
             error-message$="[[errorMessage]]"
             auto-validate$="[[autoValidate]]"
             required$="[[required]]">
+    </input>
   </template>
 
   <script type="text/javascript">
@@ -162,8 +174,7 @@ Resource field. 서버에 저장되어 있는 리소스 정보를 조회하여 i
          * @type {String}
          */
         errorMessage: {
-          type: String,
-          value: 'Invalid input'
+          type: String
         }
       },
 

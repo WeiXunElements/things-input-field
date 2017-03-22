@@ -18,10 +18,20 @@ Example:
 ```html
 
     <form is="iron-form" id="form"  >
-      <things-input-field name="firstName" label="FirstName:" id="input1" value></things-input-field>
-      <things-input-field name="lastName" label="LastName:" id="input2"></things-input-field>
-      <things-input-field name="eMail"label="E-Mail:" id="input3"></things-input-field>
-      <things-input-field name="description" label="Description:" id="input3"></things-input-field>
+      <things-input-field name="firstName"
+          label="FirstName:"
+          id="input1"
+          value></things-input-field>
+      <things-input-field name="lastName"
+          label="LastName:"
+          id="input2"></things-input-field>
+      <things-input-field name="eMail"
+          label="E-Mail:"
+          id="input3"></things-input-field>
+      <things-input-field name="description"
+          label="Description:"
+          id="input3"></things-input-field>
+
     </form>
     <button class="button" on-tap="submit">Submit</button><br><br>
   <script>
