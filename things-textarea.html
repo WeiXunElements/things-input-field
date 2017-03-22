@@ -4,7 +4,7 @@
 <link rel="import" href="../iron-autogrow-textarea/iron-autogrow-textarea.html">
 
 <!--
-## things-textarea
+##@ things-textarea
 things-textarea는 웹 페이지로 긴 정보를 입력하는 영역이다.
 
   Example:
@@ -15,6 +15,7 @@ things-textarea는 웹 페이지로 긴 정보를 입력하는 영역이다.
       name="user_id">
     </things-textarea>
 
+@demo demo/things-textarea-index.html
 -->
 
 <dom-module is='things-textarea'>
@@ -56,7 +57,7 @@ things-textarea는 웹 페이지로 긴 정보를 입력하는 영역이다.
             msg="{{errorMessage}}" hidden>
             Invalid Input
         </things-i18n-msg>
-        
+
         <label id="textLabel">[[label]]</label>
 
         <iron-autogrow-textarea
@@ -94,7 +95,7 @@ things-textarea는 웹 페이지로 긴 정보를 입력하는 영역이다.
                 },
 
                 /**
-                 * textarea value attribute
+                 * textarea value 속성설정
                  * @type {String}
                  */
                 value: {
@@ -113,7 +114,7 @@ things-textarea는 웹 페이지로 긴 정보를 입력하는 영역이다.
                 },
 
                 /**
-                 * textarea placeholder attribute
+                 * textarea placeholder 속성설정
                  * @type {String}
                  */
                 placeholder: {
@@ -139,7 +140,7 @@ things-textarea는 웹 페이지로 긴 정보를 입력하는 영역이다.
                 },
 
                 /**
-                 * textare maxlength attribute
+                 * textare maxlength 속성설정
                  * @type {Number}
                  */
                 maxlength: {
@@ -240,7 +241,7 @@ things-textarea는 웹 페이지로 긴 정보를 입력하는 영역이다.
             },
 
             /**
-             * set tab index
+             * tab index 설정
              * @param {tabIndex} tabIndex tabIndex설정
              */
             setTabindex : function(tabIndex){

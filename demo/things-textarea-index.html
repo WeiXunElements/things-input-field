@@ -1,0 +1,80 @@
+<!doctype html>
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+        content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+    <title>things-input-field Demo</title>
+    <script src="../../webcomponentsjs/webcomponents-lite.min.js"></script>
+    <link rel="import" href="../things-input-field.html">
+    <link rel="import" href="../things-textarea.html">
+    <link rel="import" href="../../things-global-behavior/things-global-behavior.html">
+    <link rel="import" href="../../paper-button/paper-button.html">
+    <link rel="import" href="../../iron-form/iron-form.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+</head>
+
+<body unresolved>
+    <demo-snippet class="centered-demo">
+      <template>
+        <sample-input-field><sample-input-field>
+         <dom-module id="sample-input-field">
+            <template>
+              <style>
+              :host {
+                display: block;
+              }
+              .elevation2{
+                height: 200px;
+              @apply(--shadow-elevation-2dp);
+              }
+              .button{
+                height:35px;
+                width:220px;
+              }
+              </style>
+
+              <form is="iron-form"
+                  id="form">
+                  <things-input-field name="firstName"
+                      label="FirstName:"
+                      id="input1"></things-input-field>
+
+                  <things-textarea  name="sampletextarea"
+                       label="TextArea:"
+                      id="input2"></things-textarea>
+              </form>
+
+              <button class="button"
+                  on-tap="submit">Submit</button>
+
+              <div class="elevation2">
+                  <p id="p1"></p>
+              </div>
+            </template>
+            <script>
+                Polymer({
+                    is: 'sample-input-field',
+                    submit: function() {
+                        this.$.p1.innerHTML = JSON.stringify(this.$.form.serialize());
+                    }
+                });
+
+            </script>
+          </dom-module>
+        </template>
+      </demo-snippet>
+</body>
+
+</html>

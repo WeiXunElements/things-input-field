@@ -1,17 +1,18 @@
-# things-input-field
+# things-input-field / things-textarea
 
-## things-input-field는 웹 페이지로 정보를 입력하는 영역이다.
+## things-input-field/things-textarea는 웹 페이지로 정보를 입력하는 영역이다.
 
 ### form은 input data를 json형식으로 서버와 인터페이스한다.
 Example:
 
 ```html
     <things-input-field></things-input-field>
+    <things-textarea></things-textarea>
 ```
 
 *****
 </br></br>
-### form에서 things-input-field를 사용하여 json data로 서버와 인테페이스
+### form에서 things-input-field/things-textarea를 사용하여 json data로 서버와 인테페이스
 
 Example:
 
@@ -31,6 +32,9 @@ Example:
       <things-input-field name="description"
           label="Description:"
           id="input3"></things-input-field>
+      <things-textarea  name="sampletextarea"
+               label="TextArea:"
+              id="input2"></things-textarea>
 
     </form>
     <button class="button" on-tap="submit">Submit</button><br><br>
