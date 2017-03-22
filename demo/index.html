@@ -15,34 +15,58 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <title>things-input-field Demo</title>
     <script src="../../webcomponentsjs/webcomponents-lite.min.js"></script>
     <link rel="import" href="../things-input-field.html">
+      <link rel="import" href="../../things-i18n-msg/things-i18n-msg.html">
+      <link rel="import" href="../../things-global-behavior/things-global-behavior.html">
+      <link rel="import" href="../../paper-button/paper-button.html">
+      <link rel="import" href="../../iron-form/iron-form.html">
+      <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+      <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+
+
   </head>
   <body unresolved>
+    <demo-snippet class="centered-demo"><template>
+  <things-i18n-msg></things-i18n-msg>
+<sample-input-field><sample-input-field>
 
-    <p>An example of <code>&lt;things-input-field&gt;</code>:</p>
+<dom-module id="sample-input-field">
+  <template>
+      <style>
+      :host {
+        display: block;
+      }
+      .elevation2{
+        height: 200px;
+      @apply(--shadow-elevation-2dp);
+      }
+      .button{
+        height:35px;
+        width:220px;
+      }
+      </style>
 
-    <p>Make words! <button id="saybtn">Say Something</button></p>
-    <p>Make lasers! <button id="laserbtn">Fire lasers</button></p>
+      <form is="iron-form" id="form"  >
+      <things-input-field name="firstName" label="FirstName:" id="input1" value></things-input-field><br><br>
+      <things-input-field name="lastName" label="LastName:" id="input2"></things-input-field><br><br>
+      <things-input-field name="eMail"label="E-Mail:" id="input3"></things-input-field><br><br>
+      <things-input-field name="description" label="Description:" id="input3"></things-input-field><br><br>
+      </form>
+      <button class="button" on-tap="submit">Submit</button><br><br>
+      <div class="elevation2"><p id="p1"></p></div>
+      </template>
 
-    <things-input-field author='{"name": "Lord Meowser", "image": "http://lorempixel.com/g/300/200/cats/"}' fancy>
-      <h2>Hello things-input-field</h2>
-    </things-input-field>
+      <script>
+      Polymer({
+      is: 'sample-input-field',
+      submit: function(){
+        this.$.p1.innerHTML = JSON.stringify(this.$.form.serialize());
+      }
+     });
+  </script>
+</dom-module>
+</demo-snippet></template>
 
-    <script>
-      var seedElement = document.querySelector('things-input-field');
 
-      document.querySelector('#saybtn').addEventListener('click', function() {
-        alert(seedElement.sayHello('Hallo!'));
-      });
-
-      document.querySelector('#laserbtn').addEventListener('click', function() {
-        seedElement.fireLasers();
-      });
-
-      document.addEventListener("things-input-field-lasers", function(e) {
-        console.log(e.detail.sound);
-      });
-
-    </script>
 
   </body>
 </html>

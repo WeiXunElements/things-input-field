@@ -1,9 +1,20 @@
 <link rel="import" href="../polymer/polymer.html">
-
+<link rel="import" href="../things-i18n-msg/things-i18n-msg.html">
+<link rel="import" href="../things-global-behavior/things-global-behavior.html">
 <link rel="import" href="../iron-autogrow-textarea/iron-autogrow-textarea.html">
 
 <!--
-    TextArea
+## things-textarea
+things-textarea는 웹 페이지로 긴 정보를 입력하는 영역이다.
+
+  Example:
+
+    <things-textarea
+      id="resource-selector"
+      label="Language"
+      name="user_id">
+    </things-textarea>
+    
 -->
 
 <dom-module is='things-textarea'>
@@ -41,19 +52,19 @@
     <template>
         <label id="textLabel">[[label]]</label>
 
-        <iron-autogrow-textarea 
-            id="textarea" 
-            rows="[[rows]]" 
-            name="[[name]]" 
-            bind-value="{{value}}" 
-            placeholder="[[placeholder]]" 
-            maxlength="[[maxlength]]" 
-            max-rows="[[maxRows]]" 
-            readonly="[[readonly]]" 
-            hidden="[[hidden]]" 
-            disabled="[[disabled]]" 
-            required="[[required]]" 
-            auto-validate="[[autoValidate]]" 
+        <iron-autogrow-textarea
+            id="textarea"
+            rows="[[rows]]"
+            name="[[name]]"
+            bind-value="{{value}}"
+            placeholder="[[placeholder]]"
+            maxlength="[[maxlength]]"
+            max-rows="[[maxRows]]"
+            readonly="[[readonly]]"
+            hidden="[[hidden]]"
+            disabled="[[disabled]]"
+            required="[[required]]"
+            auto-validate="[[autoValidate]]"
             tabindex$="[[tabIndex]]">
         </iron-autogrow-textarea>
 
@@ -69,6 +80,7 @@
             properties: {
                 /**
                  * name of textarea
+                 * @type {String}
                  */
                 name: {
                     type: String
@@ -76,6 +88,7 @@
 
                 /**
                  * textarea value attribute
+                 * @type {String}
                  */
                 value: {
                     type: String,
@@ -84,7 +97,8 @@
                 },
 
                 /**
-                 * ?
+                 * divspan 설정
+                 * @type {Number}
                  */
                 divspan: {
                     type: Number,
@@ -93,6 +107,7 @@
 
                 /**
                  * textarea placeholder attribute
+                 * @type {String}
                  */
                 placeholder: {
                     type: String
@@ -100,6 +115,7 @@
 
                 /**
                  * initial rows
+                 * @type {Number}
                  */
                 rows: {
                     type: Number
@@ -108,14 +124,16 @@
                 /**
                  * max rows
                  * 최대 row수를 설정하고 최대 로우가 넘어서는 input을 입력 받으면 스크롤이 생성 된다.
+                 * @type {Number}
                  */
                 maxRows: {
-                    type: Number,
+                    type: Number
                     value: 10
                 },
 
                 /**
                  * textare maxlength attribute
+                 * @type {Number}
                  */
                 maxlength: {
                     type: Number
@@ -123,6 +141,7 @@
 
                 /**
                  * readonly attribute
+                 * @type {Boolean}
                  */
                 readonly: {
                     type: Boolean,
@@ -131,6 +150,7 @@
 
                 /**
                  * hidden attribute
+                 * @type {Boolean}
                  */
                 hidden: {
                     type: Boolean,
@@ -139,6 +159,7 @@
 
                 /**
                  * disabled attribute
+                 * @type {Boolean}
                  */
                 disabled: {
                     type: Boolean,
@@ -147,6 +168,7 @@
 
                 /**
                  * required attribute
+                 * @type {Boolean}
                  */
                 required: {
                     type: Boolean,
@@ -155,6 +177,7 @@
 
                 /**
                  * validation 결과
+                 * @type {Boolean}
                  */
                 isValid: {
                     type: Boolean
@@ -162,6 +185,7 @@
 
                 /**
                  * isValid가 false 일때 나타나는 errorMessage attribute
+                 * @type {String}
                  */
                 errorMessage: {
                     type: String,
@@ -172,6 +196,7 @@
 
                 /**
                  * auto validation check 활성화 여부
+                 * @type {Boolean}
                  */
                 autoValidate: {
                     type: Boolean,
@@ -180,6 +205,7 @@
 
                 /**
                  * tab index
+                 * @type {String}
                  */
                 tabIndex:{
                     type: String
@@ -192,7 +218,7 @@
             validate: function() {
                 this.isValid = this.$['textarea'].validate();
             },
-            
+
             /**
              * focus function
              */
@@ -211,6 +237,7 @@
 
             /**
              * set tab index
+             * @param {tabIndex} tabIndex tabIndex설정
              */
             setTabindex : function(tabIndex){
                 this.$['input'].setAttribute('tabindex',tabIndex);

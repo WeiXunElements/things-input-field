@@ -4,7 +4,7 @@
   "authors": [
     "Hatio Lab. <heartyoh@hatiolab.com>"
   ],
-  "description": "An element providing an input field & textarea component",
+  "description": "필드 즉 웹 페이지로 정보를 입력하는 컴포넌트이다",
   "keywords": [
     "web-component",
     "polymer",
@@ -21,7 +21,9 @@
     "polymer": "Polymer/polymer#^1.2.0",
     "iron-input": "^1.0.10",
     "iron-autogrow-textarea": "PolymerElements/iron-autogrow-textarea#^1.0.12",
-    "things-validators": "ThingsElements/things-validators"
+    "things-validators": "ThingsElements/things-validators",
+    "things-i18n-msg": "ThingsElements/things-i18n-msg#^0.1.25",
+    "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^1.2.5"
   },
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",

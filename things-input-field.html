@@ -1,7 +1,23 @@
 <link rel="import" href="../polymer/polymer.html">
-
+<link rel="import" href="../things-i18n-msg/things-i18n-msg.html">
+<link rel="import" href="../things-global-behavior/things-global-behavior.html">
 <!--
-  Things Input Field
+## things-input-field
+things-input-field는 웹 페이지로 정보를 입력하는 영역이다.
+
+form은 input data를 json형식으로 서버와 인터페이스한다.
+
+### Example:
+
+    <form is="iron-form" id="form">
+      <things-input-field name="firstName" label="FirstName:" id="input1" value></things-input-field>
+      <things-input-field name="lastName" label="LastName:" id="input2"></things-input-field>
+      <things-input-field name="eMail" label="E-Mail:" id="input3"></things-input-field>
+      <things-input-field name="description" label="Description:" id="input3"></things-input-field>
+    </form>
+    <button class="button" on-tap="submit">Submit</button>
+
+@demo demo/index.html
 -->
 
 <dom-module id="things-input-field">
@@ -24,6 +40,7 @@
   </style>
 
   <template>
+    <things-i18n-msg></things-i18n-msg>
     <label hidden="[[hidden]]">[[label]]</label>
 
     <input is="iron-input" id="input"
@@ -62,7 +79,8 @@
 
       properties: {
         /**
-         * label string
+         * 라벨 string
+         * @type {String}
          */
         label: {
           type: String
@@ -70,6 +88,7 @@
 
         /**
          * input field name
+         * @type {String}
          */
         name: {
           type: String
@@ -78,9 +97,10 @@
         /**
          * allowd pattern
          * validation check의 기준이 되는 패턴의 정의 합니다.
-         * ex [a-zA-Z]* a~z & A~Z 
+         * ex [a-zA-Z]* a~z & A~Z
          * 마지막 *을 포함하지 않을 시 validation에서 첫글자만 확인하는점 주의
          * pattern의 기준과 다른 문자열 입력 가능
+         * @type {String}
          */
         pattern: {
           type: String
@@ -91,13 +111,15 @@
          * pattern과 달리 입력이 안되도록 합니다.
          * ex: [a-zA-Z0-9] a ~ z, A ~ Z, 0 ~ 9
          * allowedPattern의 기준과 다른 문자열 입력 불가능
+         * @type {String}
          */
         allowedPattern: {
           type: String
         },
 
         /**
-         * input field value
+         * input field value 설정
+         * @type {String}
          */
         value: {
           type: String,
@@ -106,21 +128,24 @@
         },
 
         /**
-         * input field placeholder
+         * input field placeholder 설정
+         * @type {String}
          */
         placeholder: {
           type: String
         },
 
         /**
-         * input field type
+         * input field type 설정
+         * @type {String}
          */
         type: {
           type: String
         },
 
         /**
-         * ?
+         * validation type 설정
+         * @type {String}
          */
         validationType: {
           type: String
@@ -128,6 +153,7 @@
 
         /**
          * 자동 validation check 활성화 여부
+         * @type {Boolean}
          */
         autoValidate: {
           type: Boolean,
@@ -136,6 +162,7 @@
 
         /**
          * type이 number일때 활성화 되며 최소값을 정의 합니다.
+         * @type {Number}
          */
         min: {
           type: Number
@@ -143,6 +170,7 @@
 
         /**
          * type이 number일때 활성화 되며 최대값을 정의 합니다.
+         * @type {Number}
          */
         max: {
           type: Number
@@ -150,6 +178,7 @@
 
         /**
          * type이 string일때 활성화 되며 입력 최소 길이를 정의 합니다.
+         * @type {Number}
          */
         minlength: {
           type: Number
@@ -157,6 +186,7 @@
 
         /**
          * type이 string일때 활성화 되며 입력 최대 길이를 정의 합니다.
+         * @type {Number}
          */
         maxlength: {
           type: Number
@@ -164,6 +194,7 @@
 
         /**
          * validate 함수를 통해 return 되는 값으로 초기화 하는 변수
+         * @type {Boolean}
          */
         isValid: {
           type: Boolean,
@@ -172,14 +203,16 @@
 
         /**
          * input field에 반드시 값이 포함되어야 함을 결정 합니다.
+         * @type {Boolean}
          */
         required: {
           type: Boolean,
           value: false
         },
-        
+
         /**
-         * input field hidden attribute
+         * input field hidden 속성
+         * @type {Boolean}
          */
         hidden: {
           type: Boolean,
@@ -187,7 +220,8 @@
         },
 
         /**
-         * input field readonly attribute
+         * input field readonly 속성
+         * @type {Boolean}
          */
         readonly: {
           type: Boolean,
@@ -195,7 +229,8 @@
         },
 
         /**
-         * input field disabled attribute
+         * input field disabled 속성
+         * @type {Boolean}
          */
         disabled: {
           type: Boolean,
@@ -204,6 +239,7 @@
 
         /**
          * validation check를 통해 isValid의 값이 false일때 화면에 나타나는 errorMessage
+         * @type {String}
          */
         errorMessage: {
           type: String,
@@ -213,7 +249,7 @@
         },
 
         /**
-         * tab Index for input field
+         * input field의 tab Index 설정
          * @type {Number}
          */
         tabIndex :{
@@ -227,9 +263,10 @@
       validate: function() {
         this.isValid = this.$.input.validate();
       },
-      
+
       /**
        * autoValidate가 true일 때 bindValue의 변화를 감지해 validate 함수를 호출 합니다.
+       * @param {bindValue} bindValue #### :bindValue변화감지되면 함수실행되여 입력
        */
       _valueChanged: function(bindValue) {
         if(this.autoValidate) {
@@ -245,7 +282,8 @@
       },
 
       /**
-       * set tab index
+       * tab index 설정
+       * @param {tabIndex} tabIndex #### :tabIndex 설정
        */
       setTabindex : function(tabIndex) {
         this.$['input'].setAttribute('tabindex', tabIndex);

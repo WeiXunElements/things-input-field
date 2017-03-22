@@ -1,7 +1,38 @@
 # things-input-field
 
-An element providing a starting point for your own reusable Polymer elements.
+## things-input-field는 웹 페이지로 정보를 입력하는 영역이다.
 
+### form은 input data를 json형식으로 서버와 인터페이스한다.
+Example:
+
+```html
+    <things-input-field></things-input-field>
+```
+
+*****
+</br></br>
+### form에서 things-input-field를 사용하여 json data로 서버와 인테페이스
+
+Example:
+
+```html
+
+    <form is="iron-form" id="form"  >
+      <things-input-field name="firstName" label="FirstName:" id="input1" value></things-input-field>
+      <things-input-field name="lastName" label="LastName:" id="input2"></things-input-field>
+      <things-input-field name="eMail"label="E-Mail:" id="input3"></things-input-field>
+      <things-input-field name="description" label="Description:" id="input3"></things-input-field>
+    </form>
+    <button class="button" on-tap="submit">Submit</button><br><br>
+  <script>
+    Polymer({
+      is: 'sample-input-field',
+      submit: function(){
+        this.$.p1.innerHTML = JSON.stringify(this.$.form.serialize());
+      }
+    });
+  </script>
+```
 
 ## Dependencies
 
@@ -14,48 +45,17 @@ Then, go ahead and download the element's dependencies:
 
     bower install
 
-
 ## Playing With Your Element
 
 If you wish to work on your element in isolation, we recommend that you use
 [Polyserve](https://github.com/PolymerLabs/polyserve) to keep your element's
 bower dependencies in line. You can install it via:
 
-    npm install -g polyserve
+    npm install -g polymer-cli
 
 And you can run it via:
 
-    polyserve
+    polymer serve
 
 Once running, you can preview your element at
-`http://localhost:8080/components/things-input-field/`, where `things-input-field` is the name of the directory containing it.
-
-
-## Testing Your Element
-
-Simply navigate to the `/test` directory of your element to run its tests. If
-you are using Polyserve: `http://localhost:8080/components/things-input-field/test/`
-
-### web-component-tester
-
-The tests are compatible with [web-component-tester](https://github.com/Polymer/web-component-tester).
-Install it via:
-
-    npm install -g web-component-tester
-
-Then, you can run your tests on _all_ of your local browsers via:
-
-    wct
-
-#### WCT Tips
-
-`wct -l chrome` will only run tests in chrome.
-
-`wct -p` will keep the browsers alive after test runs (refresh to re-run).
-
-`wct test/some-file.html` will test only the files you specify.
-
-
-## Yeoman support
-
-If you'd like to use Yeoman to scaffold your element that's possible. The official [`generator-polymer`](https://github.com/yeoman/generator-polymer) generator has a [`seed`](https://github.com/yeoman/generator-polymer#seed) subgenerator.
+`http://localhost:8080/components/things-alarm/`, where `things-alarm` is the name of the directory containing it.
