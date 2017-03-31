@@ -88,6 +88,7 @@ things-textarea는 웹 페이지로 긴 정보를 입력하는 영역이다.
             properties: {
                 /**
                  * name of textarea
+                 * ******
                  * @type {String}
                  */
                 name: {
@@ -96,6 +97,7 @@ things-textarea는 웹 페이지로 긴 정보를 입력하는 영역이다.
 
                 /**
                  * textarea value 속성설정
+                 * ******
                  * @type {String}
                  */
                 value: {
@@ -106,6 +108,7 @@ things-textarea는 웹 페이지로 긴 정보를 입력하는 영역이다.
 
                 /**
                  * divspan 설정
+                 * *******
                  * @type {Number}
                  */
                 divspan: {
@@ -115,6 +118,7 @@ things-textarea는 웹 페이지로 긴 정보를 입력하는 영역이다.
 
                 /**
                  * textarea placeholder 속성설정
+                 * ******
                  * @type {String}
                  */
                 placeholder: {
@@ -123,6 +127,7 @@ things-textarea는 웹 페이지로 긴 정보를 입력하는 영역이다.
 
                 /**
                  * initial rows
+                 * ********
                  * @type {Number}
                  */
                 rows: {
@@ -132,6 +137,7 @@ things-textarea는 웹 페이지로 긴 정보를 입력하는 영역이다.
                 /**
                  * max rows
                  * 최대 row수를 설정하고 최대 로우가 넘어서는 input을 입력 받으면 스크롤이 생성 된다.
+                 * *******
                  * @type {Number}
                  */
                 maxRows: {
@@ -141,6 +147,7 @@ things-textarea는 웹 페이지로 긴 정보를 입력하는 영역이다.
 
                 /**
                  * textare maxlength 속성설정
+                 * ******
                  * @type {Number}
                  */
                 maxlength: {
@@ -149,6 +156,7 @@ things-textarea는 웹 페이지로 긴 정보를 입력하는 영역이다.
 
                 /**
                  * readonly attribute
+                 * ******
                  * @type {Boolean}
                  */
                 readonly: {
@@ -158,6 +166,7 @@ things-textarea는 웹 페이지로 긴 정보를 입력하는 영역이다.
 
                 /**
                  * hidden attribute
+                 * ******
                  * @type {Boolean}
                  */
                 hidden: {
@@ -167,6 +176,7 @@ things-textarea는 웹 페이지로 긴 정보를 입력하는 영역이다.
 
                 /**
                  * disabled attribute
+                 * ********
                  * @type {Boolean}
                  */
                 disabled: {
@@ -176,6 +186,7 @@ things-textarea는 웹 페이지로 긴 정보를 입력하는 영역이다.
 
                 /**
                  * required attribute
+                 * *******
                  * @type {Boolean}
                  */
                 required: {
@@ -185,6 +196,7 @@ things-textarea는 웹 페이지로 긴 정보를 입력하는 영역이다.
 
                 /**
                  * validation 결과
+                 * *******
                  * @type {Boolean}
                  */
                 isValid: {
@@ -193,6 +205,7 @@ things-textarea는 웹 페이지로 긴 정보를 입력하는 영역이다.
 
                 /**
                  * isValid가 false 일때 나타나는 errorMessage attribute
+                 * *******
                  * @type {String}
                  */
                 errorMessage: {
@@ -201,6 +214,7 @@ things-textarea는 웹 페이지로 긴 정보를 입력하는 영역이다.
 
                 /**
                  * auto validation check 활성화 여부
+                 * *******
                  * @type {Boolean}
                  */
                 autoValidate: {
@@ -210,6 +224,7 @@ things-textarea는 웹 페이지로 긴 정보를 입력하는 영역이다.
 
                 /**
                  * tab index
+                 * *******
                  * @type {String}
                  */
                 tabIndex:{
@@ -219,6 +234,7 @@ things-textarea는 웹 페이지로 긴 정보를 입력하는 영역이다.
 
             /**
              * 수동 validation check 함수
+             * *******
              */
             validate: function() {
                 this.isValid = this.$['textarea'].validate();
@@ -226,6 +242,7 @@ things-textarea는 웹 페이지로 긴 정보를 입력하는 영역이다.
 
             /**
              * focus function
+             * ******
              */
             focus: function() {
                 this.$['textarea'].focus();
@@ -233,6 +250,7 @@ things-textarea는 웹 페이지로 긴 정보를 입력하는 영역이다.
 
             /**
              * autoValidate가 true일 때 bindValue의 변화를 감지해 validate 함수를 호출 합니다.
+             * ******
              */
             _valueChanged: function() {
                 if (this.autoValidate) {
@@ -242,6 +260,7 @@ things-textarea는 웹 페이지로 긴 정보를 입력하는 영역이다.
 
             /**
              * tab index 설정
+             * ******
              * @param {tabIndex} tabIndex tabIndex설정
              */
             setTabindex : function(tabIndex){
