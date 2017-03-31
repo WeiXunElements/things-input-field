@@ -4,8 +4,7 @@
 <link rel="import" href="../iron-autogrow-textarea/iron-autogrow-textarea.html">
 
 <!--
-##@ things-textarea
-things-textarea는 웹 페이지로 긴 정보를 입력하는 영역이다.
+## things-textarea는 웹 페이지로 긴 정보를 입력하는 영역이다.
 
   Example:
 
@@ -15,7 +14,7 @@ things-textarea는 웹 페이지로 긴 정보를 입력하는 영역이다.
       name="user_id">
     </things-textarea>
 
-@demo demo/things-textarea-index.html
+@demo demo/demo-things-textarea.html
 -->
 
 <dom-module is='things-textarea'>
@@ -88,7 +87,11 @@ things-textarea는 웹 페이지로 긴 정보를 입력하는 영역이다.
             properties: {
                 /**
                  * name of textarea
+<<<<<<< HEAD
                  * ******
+=======
+                 *******
+>>>>>>> origin/master
                  * @type {String}
                  */
                 name: {
@@ -97,7 +100,11 @@ things-textarea는 웹 페이지로 긴 정보를 입력하는 영역이다.
 
                 /**
                  * textarea value 속성설정
+<<<<<<< HEAD
                  * ******
+=======
+                 *******
+>>>>>>> origin/master
                  * @type {String}
                  */
                 value: {
@@ -108,7 +115,11 @@ things-textarea는 웹 페이지로 긴 정보를 입력하는 영역이다.
 
                 /**
                  * divspan 설정
+<<<<<<< HEAD
                  * *******
+=======
+                 *******
+>>>>>>> origin/master
                  * @type {Number}
                  */
                 divspan: {
@@ -118,7 +129,11 @@ things-textarea는 웹 페이지로 긴 정보를 입력하는 영역이다.
 
                 /**
                  * textarea placeholder 속성설정
+<<<<<<< HEAD
                  * ******
+=======
+                 *******
+>>>>>>> origin/master
                  * @type {String}
                  */
                 placeholder: {
@@ -127,7 +142,11 @@ things-textarea는 웹 페이지로 긴 정보를 입력하는 영역이다.
 
                 /**
                  * initial rows
+<<<<<<< HEAD
                  * ********
+=======
+                 *******
+>>>>>>> origin/master
                  * @type {Number}
                  */
                 rows: {
@@ -137,7 +156,11 @@ things-textarea는 웹 페이지로 긴 정보를 입력하는 영역이다.
                 /**
                  * max rows
                  * 최대 row수를 설정하고 최대 로우가 넘어서는 input을 입력 받으면 스크롤이 생성 된다.
+<<<<<<< HEAD
                  * *******
+=======
+                 *******
+>>>>>>> origin/master
                  * @type {Number}
                  */
                 maxRows: {
@@ -147,7 +170,11 @@ things-textarea는 웹 페이지로 긴 정보를 입력하는 영역이다.
 
                 /**
                  * textare maxlength 속성설정
+<<<<<<< HEAD
                  * ******
+=======
+                 *******
+>>>>>>> origin/master
                  * @type {Number}
                  */
                 maxlength: {
@@ -156,7 +183,11 @@ things-textarea는 웹 페이지로 긴 정보를 입력하는 영역이다.
 
                 /**
                  * readonly attribute
+<<<<<<< HEAD
                  * ******
+=======
+                 *******
+>>>>>>> origin/master
                  * @type {Boolean}
                  */
                 readonly: {
@@ -166,7 +197,11 @@ things-textarea는 웹 페이지로 긴 정보를 입력하는 영역이다.
 
                 /**
                  * hidden attribute
+<<<<<<< HEAD
                  * ******
+=======
+                 *******
+>>>>>>> origin/master
                  * @type {Boolean}
                  */
                 hidden: {
@@ -176,7 +211,11 @@ things-textarea는 웹 페이지로 긴 정보를 입력하는 영역이다.
 
                 /**
                  * disabled attribute
+<<<<<<< HEAD
                  * ********
+=======
+                 *******
+>>>>>>> origin/master
                  * @type {Boolean}
                  */
                 disabled: {
@@ -186,7 +225,11 @@ things-textarea는 웹 페이지로 긴 정보를 입력하는 영역이다.
 
                 /**
                  * required attribute
+<<<<<<< HEAD
                  * *******
+=======
+                 *******
+>>>>>>> origin/master
                  * @type {Boolean}
                  */
                 required: {
@@ -196,7 +239,11 @@ things-textarea는 웹 페이지로 긴 정보를 입력하는 영역이다.
 
                 /**
                  * validation 결과
+<<<<<<< HEAD
                  * *******
+=======
+                 *******
+>>>>>>> origin/master
                  * @type {Boolean}
                  */
                 isValid: {
@@ -205,7 +252,11 @@ things-textarea는 웹 페이지로 긴 정보를 입력하는 영역이다.
 
                 /**
                  * isValid가 false 일때 나타나는 errorMessage attribute
+<<<<<<< HEAD
                  * *******
+=======
+                 *******
+>>>>>>> origin/master
                  * @type {String}
                  */
                 errorMessage: {
@@ -214,7 +265,11 @@ things-textarea는 웹 페이지로 긴 정보를 입력하는 영역이다.
 
                 /**
                  * auto validation check 활성화 여부
+<<<<<<< HEAD
                  * *******
+=======
+                 *******
+>>>>>>> origin/master
                  * @type {Boolean}
                  */
                 autoValidate: {
@@ -224,7 +279,11 @@ things-textarea는 웹 페이지로 긴 정보를 입력하는 영역이다.
 
                 /**
                  * tab index
+<<<<<<< HEAD
                  * *******
+=======
+                 *******
+>>>>>>> origin/master
                  * @type {String}
                  */
                 tabIndex:{
@@ -242,16 +301,25 @@ things-textarea는 웹 페이지로 긴 정보를 입력하는 영역이다.
 
             /**
              * focus function
+<<<<<<< HEAD
              * ******
              */
+=======
+             *
+             ******/
+>>>>>>> origin/master
             focus: function() {
                 this.$['textarea'].focus();
             },
 
             /**
              * autoValidate가 true일 때 bindValue의 변화를 감지해 validate 함수를 호출 합니다.
+<<<<<<< HEAD
              * ******
              */
+=======
+             *****/
+>>>>>>> origin/master
             _valueChanged: function() {
                 if (this.autoValidate) {
                     this.isValid = this.$['textarea'].validate();
@@ -260,7 +328,11 @@ things-textarea는 웹 페이지로 긴 정보를 입력하는 영역이다.
 
             /**
              * tab index 설정
+<<<<<<< HEAD
              * ******
+=======
+             ******
+>>>>>>> origin/master
              * @param {tabIndex} tabIndex tabIndex설정
              */
             setTabindex : function(tabIndex){
