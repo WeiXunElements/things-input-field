@@ -1,6 +1,6 @@
 {
   "name": "things-input-field",
-  "version": "v2.0.1",
+  "version": "v2.0.2",
   "authors": [
     "Hatio Lab. <heartyoh@hatiolab.com>"
   ],
@@ -22,7 +22,7 @@
     "iron-input": "^1.0.10",
     "iron-autogrow-textarea": "PolymerElements/iron-autogrow-textarea#^1.0.12",
     "things-validators": "ThingsElements/things-validators",
-    "things-i18n-msg": "ThingsElements/things-i18n-msg#^0.1.25"
+    "things-i18n-msg": "ThingsElements/things-i18n-msg"
   },
   "devDependencies": {
     "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^1.2.5",
