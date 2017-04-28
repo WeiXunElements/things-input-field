@@ -58,7 +58,7 @@
         Invalid Input
     </things-i18n-msg>
 
-    <label hidden="[[hidden]]">[[label]]</label>
+    <label hidden="[[hideLabel]]">[[label]]</label>
 
     <input is="iron-input" id="input"
       name="[[name]]"
@@ -93,11 +93,7 @@
       properties: {
         /**
          * 라벨 string
-<<<<<<< HEAD
-         * *******
-=======
          *******
->>>>>>> origin/master
          * @type {String}
          */
         label: {
@@ -106,11 +102,7 @@
 
         /**
          * input field name
-<<<<<<< HEAD
-         * *******
-=======
          *******
->>>>>>> origin/master
          * @type {String}
          */
         name: {
@@ -123,11 +115,7 @@
          * ex [a-zA-Z]* a~z & A~Z
          * 마지막 *을 포함하지 않을 시 validation에서 첫글자만 확인하는점 주의
          * pattern의 기준과 다른 문자열 입력 가능
-<<<<<<< HEAD
-         * *******
-=======
          *******
->>>>>>> origin/master
          * @type {String}
          */
         pattern: {
@@ -139,11 +127,7 @@
          * pattern과 달리 입력이 안되도록 합니다.
          * ex: [a-zA-Z0-9] a ~ z, A ~ Z, 0 ~ 9
          * allowedPattern의 기준과 다른 문자열 입력 불가능
-<<<<<<< HEAD
-         * ********
-=======
          *******
->>>>>>> origin/master
          * @type {String}
          */
         allowedPattern: {
@@ -152,11 +136,7 @@
 
         /**
          * input field value 설정
-<<<<<<< HEAD
-         * ******
-=======
          *******
->>>>>>> origin/master
          * @type {String}
          */
         value: {
@@ -167,11 +147,7 @@
 
         /**
          * input field placeholder 설정
-<<<<<<< HEAD
-         * ******
-=======
          *******
->>>>>>> origin/master
          * @type {String}
          */
         placeholder: {
@@ -180,11 +156,7 @@
 
         /**
          * input field type 설정
-<<<<<<< HEAD
-         * ******
-=======
          *******
->>>>>>> origin/master
          * @type {String}
          */
         type: {
@@ -193,11 +165,7 @@
 
         /**
          * 자동 validation check 활성화 여부
-<<<<<<< HEAD
-         * *******
-=======
          *******
->>>>>>> origin/master
          * @type {Boolean}
          */
         autoValidate: {
@@ -207,11 +175,7 @@
 
         /**
          * type이 number일때 활성화 되며 최소값을 정의 합니다.
-<<<<<<< HEAD
-         * *******
-=======
          *******
->>>>>>> origin/master
          * @type {Number}
          */
         min: {
@@ -220,11 +184,7 @@
 
         /**
          * type이 number일때 활성화 되며 최대값을 정의 합니다.
-<<<<<<< HEAD
-         * *******
-=======
          *******
->>>>>>> origin/master
          * @type {Number}
          */
         max: {
@@ -233,11 +193,7 @@
 
         /**
          * type이 string일때 활성화 되며 입력 최소 길이를 정의 합니다.
-<<<<<<< HEAD
-         * ********
-=======
          *******
->>>>>>> origin/master
          * @type {Number}
          */
         minlength: {
@@ -246,11 +202,7 @@
 
         /**
          * type이 string일때 활성화 되며 입력 최대 길이를 정의 합니다.
-<<<<<<< HEAD
          * ******
-=======
-         *******
->>>>>>> origin/master
          * @type {Number}
          */
         maxlength: {
@@ -259,11 +211,7 @@
 
         /**
          * validate 함수를 통해 return 되는 값으로 초기화 하는 변수
-<<<<<<< HEAD
          * ******
-=======
-         *******
->>>>>>> origin/master
          * @type {Boolean}
          */
         isValid: {
@@ -273,11 +221,7 @@
 
         /**
          * input field에 반드시 값이 포함되어야 함을 결정 합니다.
-<<<<<<< HEAD
          * ******
-=======
-         *******
->>>>>>> origin/master
          * @type {Boolean}
          */
         required: {
@@ -287,25 +231,18 @@
 
         /**
          * input field hidden 속성
-<<<<<<< HEAD
          * ******
-=======
-         *******
->>>>>>> origin/master
          * @type {Boolean}
          */
         hidden: {
           type: Boolean,
-          value: false
+          value: false,
+          observer: '_hiddenChanged'
         },
 
         /**
          * input field readonly 속성
-<<<<<<< HEAD
          * *******
-=======
-         *******
->>>>>>> origin/master
          * @type {Boolean}
          */
         readonly: {
@@ -315,11 +252,7 @@
 
         /**
          * input field disabled 속성
-<<<<<<< HEAD
          * ******
-=======
-         *******
->>>>>>> origin/master
          * @type {Boolean}
          */
         disabled: {
@@ -329,11 +262,7 @@
 
         /**
          * validation check를 통해 isValid의 값이 false일때 화면에 나타나는 errorMessage
-<<<<<<< HEAD
          * *******
-=======
-         *******
->>>>>>> origin/master
          * @type {String}
          */
         errorMessage: {
@@ -342,24 +271,31 @@
 
         /**
          * input field의 tab Index 설정
-<<<<<<< HEAD
          * ******
-=======
-         *******
->>>>>>> origin/master
          * @type {Number}
          */
         tabIndex :{
           type: String
+        },
+
+        /**
+         * label element 숨김 설정
+         *******
+         * @type {Boolean}
+         */
+        hideLabel: {
+          type: Boolean,
+          value: false
         }
       },
 
       /**
-       * 수동 validation check function
-       * *******
-       */
-      validate: function() {
-        this.isValid = this.$.input.validate();
+       * hidden값이 변경되었을 경우
+       *******/
+      _hiddenChanged: function(hidden) {
+        if(hidden) {
+          this.hideLabel = true;
+        }
       },
 
       /**
@@ -374,24 +310,24 @@
       },
 
       /**
+       * 수동 validation check function
+       * *******
+       */
+      validate: function() {
+        this.isValid = this.$.input.validate();
+      },
+
+      /**
        * focus function
-<<<<<<< HEAD
        * ******
        */
-=======
-       *****/
->>>>>>> origin/master
       focus: function() {
         this.$['input'].focus();
       },
 
       /**
        * tab index 설정
-<<<<<<< HEAD
        * ******
-=======
-       *******
->>>>>>> origin/master
        * @param {tabIndex} tabIndex #### :tabIndex 설정
        */
       setTabindex : function(tabIndex) {
