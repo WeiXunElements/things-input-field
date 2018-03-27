@@ -323,10 +323,26 @@ Copyright © HatioLab Inc. All rights reserved.
 
       /**
        * focus function
+       *
+       * 2018.03.27 - Updated by CuiGuang
+       * @param {isSelect} isSelect #### :값선택함수 호출 여부
        * ******
        */
-      focus: function() {
+      focus: function(isSelect) {
         this.$['input'].focus();
+        if (isSelect) {
+          this.select();
+        }
+      },
+
+      /**
+       * select function
+       *
+       * 2018.03.27 - Added by CuiGuang
+       *
+       */
+      select: function() {
+        this.$['input'].select();
       },
 
       /**
