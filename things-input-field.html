@@ -261,7 +261,8 @@ Copyright © HatioLab Inc. All rights reserved.
          */
         disabled: {
           type: Boolean,
-          value: false
+          value: false,
+          computed: 'onComputedDisabled(readonly)'
         },
 
         /**
@@ -352,6 +353,13 @@ Copyright © HatioLab Inc. All rights reserved.
        */
       setTabindex : function(tabIndex) {
         this.$['input'].setAttribute('tabindex', tabIndex);
+      },
+
+      /**
+       * Disabled compute function - value via readonly
+       */
+      onComputedDisabled: function(readonly) {
+          return readonly;
       }
     });
   </script>
