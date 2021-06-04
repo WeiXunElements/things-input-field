@@ -1,11 +1,11 @@
 <!--
 @license
-Copyright © HatioLab Inc. All rights reserved.
+Copyright © 2015-2021 Shenzhen Weixun All rights reserved.
 -->
-<link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="../things-i18n-msg/things-i18n-msg.html">
-<link rel="import" href="../things-global-behavior/things-global-behavior.html">
-<link rel="import" href="../iron-autogrow-textarea/iron-autogrow-textarea.html">
+<link rel="import" href="../polymer/polymer.html" />
+<link rel="import" href="../things-i18n-msg/things-i18n-msg.html" />
+<link rel="import" href="../things-global-behavior/things-global-behavior.html" />
+<link rel="import" href="../iron-autogrow-textarea/iron-autogrow-textarea.html" />
 
 <!--
 ## things-textarea는 웹 페이지로 긴 정보를 입력하는 영역이다.
@@ -21,252 +21,248 @@ Copyright © HatioLab Inc. All rights reserved.
 @demo demo/demo-things-textarea.html
 -->
 
-<dom-module is='things-textarea'>
-    <style>
-        :host {
-            @apply(--layout-horizontal);
-            @apply(--layout-relative);
-            --iron-autogrow-textarea: {
-                @apply(--things-textarea);
-                width : var(--things-textarea-width);
-            }
-        }
-        label {
-            @apply(--things-label);
-            width : var(--things-textarea-label-width);
-        }
-        iron-autogrow-textarea {
-            margin: var(--things-autogrow-textarea-margin, 0px 0px 40px 3px);
-            border:none;
-            overflow:inherit;
-            width : var(--things-autogrow-textarea-width);
-        }
-        iron-autogrow-textarea::shadow textarea:focus {
-            outline: none;
-        }
-        .hint:before {
-            @apply(--things-hint-arrow);
-        }
-        .hint {
-            @apply(--things-hint);
-        }
-    </style>
+<dom-module is="things-textarea">
+  <style>
+    :host {
+      @apply (--layout-horizontal);
+      @apply (--layout-relative);
+      --iron-autogrow-textarea: {
+        @apply (--things-textarea);
+        width: var(--things-textarea-width);
+      }
+    }
+    label {
+      @apply (--things-label);
+      width: var(--things-textarea-label-width);
+    }
+    iron-autogrow-textarea {
+      margin: var(--things-autogrow-textarea-margin, 0px 0px 40px 3px);
+      border: none;
+      overflow: inherit;
+      width: var(--things-autogrow-textarea-width);
+    }
+    iron-autogrow-textarea::shadow textarea:focus {
+      outline: none;
+    }
+    .hint:before {
+      @apply (--things-hint-arrow);
+    }
+    .hint {
+      @apply (--things-hint);
+    }
+  </style>
 
-    <template>
-        <things-i18n-msg
-            auto
-            msgid="text.invalid_input"
-            msg="{{errorMessage}}" hidden>
-            Invalid Input
-        </things-i18n-msg>
+  <template>
+    <things-i18n-msg auto msgid="text.invalid_input" msg="{{errorMessage}}" hidden> Invalid Input </things-i18n-msg>
 
-        <label id="textLabel">[[label]]</label>
+    <label id="textLabel">[[label]]</label>
 
-        <iron-autogrow-textarea
-            id="textarea"
-            rows="[[rows]]"
-            name="[[name]]"
-            bind-value="{{value}}"
-            placeholder="[[placeholder]]"
-            maxlength="[[maxlength]]"
-            max-rows="[[maxRows]]"
-            readonly="[[readonly]]"
-            hidden="[[hidden]]"
-            disabled="[[disabled]]"
-            required="[[required]]"
-            auto-validate="[[autoValidate]]"
-            tabindex$="[[tabIndex]]">
-        </iron-autogrow-textarea>
+    <iron-autogrow-textarea
+      id="textarea"
+      rows="[[rows]]"
+      name="[[name]]"
+      bind-value="{{value}}"
+      placeholder="[[placeholder]]"
+      maxlength="[[maxlength]]"
+      max-rows="[[maxRows]]"
+      readonly="[[readonly]]"
+      hidden="[[hidden]]"
+      disabled="[[disabled]]"
+      required="[[required]]"
+      auto-validate="[[autoValidate]]"
+      tabindex$="[[tabIndex]]"
+    >
+    </iron-autogrow-textarea>
 
-        <template is="dom-if" if="[[!isValid]]">
-            <span class="hint">[[errorMessage]]</span>
-        </template>
+    <template is="dom-if" if="[[!isValid]]">
+      <span class="hint">[[errorMessage]]</span>
     </template>
+  </template>
 
-    <script>
-        Polymer({
-            is: 'things-textarea',
+  <script>
+    Polymer({
+      is: "things-textarea",
 
-            properties: {
-                /**
-                 * name of textarea
-                 *******
-                 * @type {String}
-                 */
-                name: {
-                    type: String
-                },
+      properties: {
+        /**
+         * name of textarea
+         *******
+         * @type {String}
+         */
+        name: {
+          type: String,
+        },
 
-                /**
-                 * textarea value 속성설정
-                 *******
-                 * @type {String}
-                 */
-                value: {
-                    type: String,
-                    notify: true,
-                    observer: '_valueChanged'
-                },
+        /**
+         * textarea value 속성설정
+         *******
+         * @type {String}
+         */
+        value: {
+          type: String,
+          notify: true,
+          observer: "_valueChanged",
+        },
 
-                /**
-                 * divspan 설정
-                 *******
-                 * @type {Number}
-                 */
-                divspan: {
-                    type: Number,
-                    value : 1
-                },
+        /**
+         * divspan 설정
+         *******
+         * @type {Number}
+         */
+        divspan: {
+          type: Number,
+          value: 1,
+        },
 
-                /**
-                 * textarea placeholder 속성설정
-                 *******
-                 * @type {String}
-                 */
-                placeholder: {
-                    type: String
-                },
+        /**
+         * textarea placeholder 속성설정
+         *******
+         * @type {String}
+         */
+        placeholder: {
+          type: String,
+        },
 
-                /**
-                 * initial rows
-                 *******
-                 * @type {Number}
-                 */
-                rows: {
-                    type: Number
-                },
+        /**
+         * initial rows
+         *******
+         * @type {Number}
+         */
+        rows: {
+          type: Number,
+        },
 
-                /**
-                 * max rows
-                 * 최대 row수를 설정하고 최대 로우가 넘어서는 input을 입력 받으면 스크롤이 생성 된다.
-                 *******
-                 * @type {Number}
-                 */
-                maxRows: {
-                    type: Number,
-                    value: 10
-                },
+        /**
+         * max rows
+         * 최대 row수를 설정하고 최대 로우가 넘어서는 input을 입력 받으면 스크롤이 생성 된다.
+         *******
+         * @type {Number}
+         */
+        maxRows: {
+          type: Number,
+          value: 10,
+        },
 
-                /**
-                 * textare maxlength 속성설정
-                 *******
-                 * @type {Number}
-                 */
-                maxlength: {
-                    type: Number
-                },
+        /**
+         * textare maxlength 속성설정
+         *******
+         * @type {Number}
+         */
+        maxlength: {
+          type: Number,
+        },
 
-                /**
-                 * readonly attribute
-                 *******
-                 * @type {Boolean}
-                 */
-                readonly: {
-                    type: Boolean,
-                    value: false
-                },
+        /**
+         * readonly attribute
+         *******
+         * @type {Boolean}
+         */
+        readonly: {
+          type: Boolean,
+          value: false,
+        },
 
-                /**
-                 * hidden attribute
-                 *******
-                 * @type {Boolean}
-                 */
-                hidden: {
-                    type: Boolean,
-                    value: false
-                },
+        /**
+         * hidden attribute
+         *******
+         * @type {Boolean}
+         */
+        hidden: {
+          type: Boolean,
+          value: false,
+        },
 
-                /**
-                 * disabled attribute
-                 *******
-                 * @type {Boolean}
-                 */
-                disabled: {
-                    type: Boolean,
-                    value: false
-                },
+        /**
+         * disabled attribute
+         *******
+         * @type {Boolean}
+         */
+        disabled: {
+          type: Boolean,
+          value: false,
+        },
 
-                /**
-                 * required attribute
-                 *******
-                 * @type {Boolean}
-                 */
-                required: {
-                    type: Boolean,
-                    value: false
-                },
+        /**
+         * required attribute
+         *******
+         * @type {Boolean}
+         */
+        required: {
+          type: Boolean,
+          value: false,
+        },
 
-                /**
-                 * validation 결과
-                 *******
-                 * @type {Boolean}
-                 */
-                isValid: {
-                    type: Boolean
-                },
+        /**
+         * validation 결과
+         *******
+         * @type {Boolean}
+         */
+        isValid: {
+          type: Boolean,
+        },
 
-                /**
-                 * isValid가 false 일때 나타나는 errorMessage attribute
-                 *******
-                 * @type {String}
-                 */
-                errorMessage: {
-                    type: String
-                },
+        /**
+         * isValid가 false 일때 나타나는 errorMessage attribute
+         *******
+         * @type {String}
+         */
+        errorMessage: {
+          type: String,
+        },
 
-                /**
-                 * auto validation check 활성화 여부
-                 *******
-                 * @type {Boolean}
-                 */
-                autoValidate: {
-                    type: Boolean,
-                    value: false
-                },
+        /**
+         * auto validation check 활성화 여부
+         *******
+         * @type {Boolean}
+         */
+        autoValidate: {
+          type: Boolean,
+          value: false,
+        },
 
-                /**
-                 * tab index
-                 *******
-                 * @type {String}
-                 */
-                tabIndex:{
-                    type: String
-                }
-            },
+        /**
+         * tab index
+         *******
+         * @type {String}
+         */
+        tabIndex: {
+          type: String,
+        },
+      },
 
-            /**
-             * 수동 validation check 함수
-             * *******
-             */
-            validate: function() {
-                this.isValid = this.$['textarea'].validate();
-            },
+      /**
+       * 수동 validation check 함수
+       * *******
+       */
+      validate: function () {
+        this.isValid = this.$["textarea"].validate();
+      },
 
-            /**
-             * focus function
-             * ******
-             */
-            focus: function() {
-                this.$['textarea'].focus();
-            },
+      /**
+       * focus function
+       * ******
+       */
+      focus: function () {
+        this.$["textarea"].focus();
+      },
 
-            /**
-             * autoValidate가 true일 때 bindValue의 변화를 감지해 validate 함수를 호출 합니다.
-             *****/
-            _valueChanged: function() {
-                if (this.autoValidate) {
-                    this.isValid = this.$['textarea'].validate();
-                }
-            },
+      /**
+       * autoValidate가 true일 때 bindValue의 변화를 감지해 validate 함수를 호출 합니다.
+       *****/
+      _valueChanged: function () {
+        if (this.autoValidate) {
+          this.isValid = this.$["textarea"].validate();
+        }
+      },
 
-            /**
-             * tab index 설정
-             ******
-             * @param {tabIndex} tabIndex tabIndex설정
-             */
-            setTabindex : function(tabIndex){
-                this.$['input'].setAttribute('tabindex',tabIndex);
-            }
-        });
-    </script>
+      /**
+       * tab index 설정
+       ******
+       * @param {tabIndex} tabIndex tabIndex설정
+       */
+      setTabindex: function (tabIndex) {
+        this.$["input"].setAttribute("tabindex", tabIndex);
+      },
+    });
+  </script>
 </dom-module>

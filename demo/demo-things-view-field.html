@@ -1,41 +1,43 @@
 <!--
 @license
-Copyright © HatioLab Inc. All rights reserved.
+Copyright © 2015-2021 Shenzhen Weixun All rights reserved.
 -->
-<!doctype html>
+<!DOCTYPE html>
 <html>
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes" />
     <title>things-view-field Demo</title>
     <script src="../../webcomponentsjs/webcomponents-lite.min.js"></script>
-    <link rel="import" href="../things-view-field.html">
-    <link rel="import" href="../things-textarea.html">
-    <link rel="import" href="../../things-global-behavior/things-global-behavior.html">
-    <link rel="import" href="../../paper-button/paper-button.html">
-    <link rel="import" href="../../iron-form/iron-form.html">
-    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
-    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
-</head>
+    <link rel="import" href="../things-view-field.html" />
+    <link rel="import" href="../things-textarea.html" />
+    <link rel="import" href="../../things-global-behavior/things-global-behavior.html" />
+    <link rel="import" href="../../paper-button/paper-button.html" />
+    <link rel="import" href="../../iron-form/iron-form.html" />
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html" />
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html" />
+  </head>
 
-<body unresolved>
+  <body unresolved>
     <h3>Things View Field</h3>
     <demo-snippet class="centered-demo">
-        <template id="tmpt">
-            <things-view-field id="resource-view" 
-              value ="[[user]]"
-              resource-id-field ="user_id"
-              resource-title-field ="name"
-              resource-desc-field ="description"
-            >
-            </things-view-field>
-            <script type="text/javascript">
-                document.getElementById('resource-view').value = 
-                      {"user_id":"1","name":"홍길동","description":"전략사업부 부장"}
-            </script>
-        </template>
+      <template id="tmpt">
+        <things-view-field
+          id="resource-view"
+          value="[[user]]"
+          resource-id-field="user_id"
+          resource-title-field="name"
+          resource-desc-field="description"
+        >
+        </things-view-field>
+        <script type="text/javascript">
+          document.getElementById("resource-view").value = {
+            user_id: "1",
+            name: "홍길동",
+            description: "전략사업부 부장",
+          };
+        </script>
+      </template>
     </demo-snippet>
-</body>
-
+  </body>
 </html>
