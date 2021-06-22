@@ -1,6 +1,6 @@
 {
   "name": "things-input-field",
-  "version": "v2.2.7",
+  "version": "v2.2.8",
   "authors": [
     "Shenzhen Weixun"
   ],
@@ -19,8 +19,8 @@
     "polymer": "Polymer/polymer#^1.2.0",
     "iron-input": "^1.0.10",
     "iron-autogrow-textarea": "PolymerElements/iron-autogrow-textarea#^1.0.12",
-    "things-validators": "ThingsElements/things-validators",
-    "things-i18n-msg": "ThingsElements/things-i18n-msg"
+    "things-validators": "WeiXunElements/things-validators",
+    "things-i18n-msg": "WeiXunElements/things-i18n-msg"
   },
   "devDependencies": {
     "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^1.2.5",
